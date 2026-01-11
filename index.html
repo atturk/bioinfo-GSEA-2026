@@ -221,7 +221,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Geni rimanenti</span></span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>remaining_genes <span class="ot">&lt;-</span> tT_ordered[(<span class="fu">min</span>(<span class="dv">100</span>, <span class="fu">nrow</span>(tT_ordered)) <span class="sc">+</span> <span class="dv">1</span>)<span class="sc">:</span><span class="fu">nrow</span>(tT_ordered), ]</span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Campiona il 25% dei geni rimanenti</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Campiona l'1% dei geni rimanenti</span></span>
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)  <span class="co"># per riproducibilità</span></span>
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>sample_size <span class="ot">&lt;-</span> <span class="fu">floor</span>(<span class="fl">0.01</span> <span class="sc">*</span> <span class="fu">nrow</span>(remaining_genes))</span>
 <span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>sampled_genes <span class="ot">&lt;-</span> remaining_genes[<span class="fu">sample</span>(<span class="fu">nrow</span>(remaining_genes), sample_size), ]</span>
