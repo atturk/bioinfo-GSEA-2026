@@ -1,0 +1,186 @@
+---
+title: "Effetto del fumo di sigaretta sul trascrittoma della mucosa orale umana"
+subtitle: "Analisi bioinformatica dei profili di espressione genica"
+author: 
+  -  name: "Attilio Turco - 267161"
+     affiliation: "UNICAL"
+date: last-modified
+lang: it
+format:
+  html:
+    toc: true
+    number-sections: false
+    code-fold: true
+---
+# Breve descrizione della serie scelta
+ID: [GSE17913](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE17913)
+
+La serie è parte di uno studio che ha analizzato proprio l'effetto del fumo di sigaretta sul trascrittoma della mucosa umana. Lo studio ha trovato che 32 geni hanno mostrato un'espressione aumentata e 9 geni hanno mostrato un'espressione ridotta nella mucosa orale dei fumatori rispetto ai non fumatori. 
+
+Il campione originariamente era n=80, ma ne sono stati depositati 79 perché un campione è stato escluso in base a una [misura di qualità](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE17913#:~:text=One%20sample%20was%20excluded%20from%20the%20study%20based%20on%20a%20quality%20measure%20leaving%2079%20for%20analysis%20and%20deposited%20here).
+
+# Codice R
+Ho usato il codice generato da GEO2R e plotly per la parte del volcano plot
+
+```{r codice GEO2R}
+#| output: false
+library(GEOquery)
+library(limma)
+library(umap)
+library(plotly)
+
+gset <- getGEO("GSE17913", GSEMatrix =TRUE, AnnotGPL=TRUE)
+if (length(gset) > 1) idx <- grep("GPL570", attr(gset, "names")) else idx <- 1
+gset <- gset[[idx]]
+
+# make proper column names to match toptable 
+fvarLabels(gset) <- make.names(fvarLabels(gset))
+
+# group membership for all samples
+gsms <- paste0("11101101001010001001111111100111011010111000100001",
+        "00010010010010110101010101001")
+sml <- strsplit(gsms, split="")[[1]]
+
+# log2 transformation
+ex <- exprs(gset)
+qx <- as.numeric(quantile(ex, c(0., 0.25, 0.5, 0.75, 0.99, 1.0), na.rm=T))
+LogC <- (qx[5] > 100) ||
+          (qx[6]-qx[1] > 50 && qx[2] > 0)
+if (LogC) { ex[which(ex <= 0)] <- NaN
+  exprs(gset) <- log2(ex) }
+
+# assign samples to groups and set up design matrix
+gs <- factor(sml)
+groups <- make.names(c("smoker","nonsmoker"))
+levels(gs) <- groups
+gset$group <- gs
+design <- model.matrix(~group + 0, gset)
+colnames(design) <- levels(gs)
+
+gset <- gset[complete.cases(exprs(gset)), ] # skip missing values
+
+fit <- lmFit(gset, design)  # fit linear model
+
+# set up contrasts of interest and recalculate model coefficients
+cts <- paste(groups[1], groups[2], sep="-")
+cont.matrix <- makeContrasts(contrasts=cts, levels=design)
+fit2 <- contrasts.fit(fit, cont.matrix)
+
+# compute statistics and table of top significant genes
+fit2 <- eBayes(fit2, 0.01)
+tT <- topTable(fit2, adjust = "fdr", sort.by = "B", number = Inf)
+
+tT <- subset(tT, select = c("Gene.symbol", "Gene.title", "logFC", "AveExpr", "t", "P.Value", "adj.P.Val", "B"))
+
+tT <- tT[tT$Gene.symbol != "", ]
+```
+
+Dato che i geni erano troppi ho implementato questa logica: tengo i 100 più differenzialmente espressi (B-statistics) e prendo l'1% dei rimanenti per vedere comunque i punti alla base del grafico.
+```{r prep-dati-vplot}
+# Ordina per B-statistic (decrescente)
+tT_ordered <- tT[order(tT$B, decreasing = TRUE), ]
+
+# Mantieni i top 100 geni per B-statistic
+top_genes <- tT_ordered[1:min(100, nrow(tT_ordered)), ]
+
+# Geni rimanenti
+remaining_genes <- tT_ordered[(min(100, nrow(tT_ordered)) + 1):nrow(tT_ordered), ]
+
+# Campiona il 25% dei geni rimanenti
+set.seed(42)  # per riproducibilità
+sample_size <- floor(0.01 * nrow(remaining_genes))
+sampled_genes <- remaining_genes[sample(nrow(remaining_genes), sample_size), ]
+
+# Combina i due set
+tT_filtered <- rbind(top_genes, sampled_genes)
+
+# Mantiene solo il primo nome e la prima descrizione se sono presenti più geni separati da ///
+tT_filtered$Gene.symbol.short <- sapply(strsplit(as.character(tT_filtered$Gene.symbol), "///"), `[`, 1)
+
+tT_filtered$Gene.title.short <- sapply(strsplit(as.character(tT_filtered$Gene.title), "///"), `[`, 1)
+```
+
+Il volcano plot confronta **Fumatori rispetto a Non Fumatori**. I geni colorati sono quelli con logFC < -0.5 o > 0.5 e adj.P.Val > 0.5. Comunque per l'analisi dei singoli geni ho preso i primi 10 geni più differenzialmente espressi usando la B-statistics.
+```{r volcano-plot}
+#| fig-width: 10
+#| fig-height: 8
+#| warning: false
+#| code-fold: true
+
+# Preparazione dei dati per il volcano plot (sul dataset filtrato)
+tT_filtered$neglog10p <- -log10(tT_filtered$P.Value)
+
+# Classificazione dei geni
+tT_filtered$diffexpressed <- "Non significativo"
+tT_filtered$diffexpressed[tT_filtered$logFC > 0.5 & tT_filtered$adj.P.Val < 0.05] <- "Up-regulated"
+tT_filtered$diffexpressed[tT_filtered$logFC < -0.5 & tT_filtered$adj.P.Val < 0.05] <- "Down-regulated"
+
+# Etichette per i geni più significativi
+tT_filtered$delabel <- NA
+tT_filtered$delabel[tT_filtered$adj.P.Val < 0.001 & abs(tT_filtered$logFC) > 1.5] <- 
+  tT_filtered$Gene.symbol[tT_filtered$adj.P.Val < 0.001 & abs(tT_filtered$logFC) > 1.5]
+
+# Creazione del volcano plot interattivo con plotly
+colors <- c("Up-regulated" = "#E64B35", 
+            "Down-regulated" = "#3C5488", 
+            "Non significativo" = "grey")
+
+p <- plot_ly(data = tT_filtered, 
+             x = ~logFC, 
+             y = ~neglog10p,
+             type = "scatter",
+             mode = "markers",
+             color = ~diffexpressed,
+             colors = colors,
+             text = ~paste("Gene:", Gene.symbol.short,
+               "<br>log2FC:", round(logFC, 3),
+               "<br>", Gene.title.short),
+             hoverinfo = "text",
+             marker = list(size = 6,
+                          opacity = 0.7,
+                          line = list(width = 0.5, color = 'white'))) %>%
+  layout(xaxis = list(title = "log2 Fold Change",
+                     zeroline = TRUE,
+                     zerolinewidth = 1,
+                     zerolinecolor = "black",
+                     gridcolor = "lightgray"),
+         yaxis = list(title = "-log10(P-value)",
+                     gridcolor = "lightgray"),
+         legend = list(title = list(text = "Espressione")),
+         hovermode = "closest")
+
+p
+```
+
+## Spiegazione della B-statistics
+La B-statistics in sostanza è un parametro che combina LogFC e P value. 
+``` r
+fit2 <- eBayes(fit2, 0.01)
+```
+eBayes è una funzione del pacchetto limma che applica un approccio bayesiano empirico per  stabilizzare le stime della varianza tra geni e migliorare l'affidabilità statistica quando il numero di campioni è piccolo (n<100 in genere). 
+
+Con 0.01 sto dicendo che mi aspetto che l'1% dei geni siano differenzialmente espressi; la funzione usa questa mia aspettativa a priori per capire se un punto è rilevante o meno rispetto al rumore di fondo e in questo modo calcola il valore B.
+
+Questi sono i 10 geni più differenzialmente espressi, quindi con B-statistics maggiore. 
+
+```{r diffexp}
+#| code-fold: true
+
+tT_unique <- tT[!duplicated(tT$Gene.symbol), ]
+
+tT_display <- head(tT_unique, 10)
+
+tT_display$negLogP <- -log10(tT_display$P.Value)
+
+tT_display <- tT_display[, c("Gene.symbol", "Gene.title", "negLogP", "logFC", "B")]
+
+knitr::kable(tT_display, 
+             caption = "Top 10 geni unici differenzialmente espressi (ordinati per B-statistic)",
+             col.names = c("Gene", "Titolo", "-log10(P)", "log2FC", "B"),
+             digits = 3)
+```
+
+Guardando la colonna log2FC notiamo subito che i valori sono tutti positivi. Questo vuol dire che si tratta di geni sovra-espressi nei fumatori. Per la parte di validazione dei singoli geni inizio con questi.
+
+# Validazione genetica
+## CYP1B1

@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="it" xml:lang="it"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.26">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Attilio Turco - 267161">
+
+<title>Effetto del fumo di sigaretta sul trascrittoma della mucosa orale umana</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="proj_files/libs/clipboard/clipboard.min.js"></script>
+<script src="proj_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="proj_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="proj_files/libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="proj_files/libs/quarto-html/popper.min.js"></script>
+<script src="proj_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="proj_files/libs/quarto-html/anchor.min.js"></script>
+<link href="proj_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="proj_files/libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="proj_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="proj_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="proj_files/libs/bootstrap/bootstrap-d6a003b94517c951b2d65075d42fb01b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="proj_files/libs/htmltools-fill-0.5.9/fill.css" rel="stylesheet">
+<script src="proj_files/libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<script src="proj_files/libs/plotly-binding-4.11.0/plotly.js"></script>
+<script src="proj_files/libs/typedarray-0.1/typedarray.min.js"></script>
+<script src="proj_files/libs/jquery-3.5.1/jquery.min.js"></script>
+<link href="proj_files/libs/crosstalk-1.2.2/css/crosstalk.min.css" rel="stylesheet">
+<script src="proj_files/libs/crosstalk-1.2.2/js/crosstalk.min.js"></script>
+<link href="proj_files/libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet">
+<script src="proj_files/libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
+
+
+</head>
+
+<body class="quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Indice</h2>
+   
+  <ul>
+  <li><a href="#breve-descrizione-della-serie-scelta" id="toc-breve-descrizione-della-serie-scelta" class="nav-link active" data-scroll-target="#breve-descrizione-della-serie-scelta">Breve descrizione della serie scelta</a></li>
+  <li><a href="#codice-r" id="toc-codice-r" class="nav-link" data-scroll-target="#codice-r">Codice R</a>
+  <ul class="collapse">
+  <li><a href="#spiegazione-della-b-statistics" id="toc-spiegazione-della-b-statistics" class="nav-link" data-scroll-target="#spiegazione-della-b-statistics">Spiegazione della B-statistics</a></li>
+  </ul></li>
+  <li><a href="#validazione-genetica" id="toc-validazione-genetica" class="nav-link" data-scroll-target="#validazione-genetica">Validazione genetica</a>
+  <ul class="collapse">
+  <li><a href="#cyp1b1" id="toc-cyp1b1" class="nav-link" data-scroll-target="#cyp1b1">CYP1B1</a></li>
+  </ul></li>
+  </ul>
+</nav>
+</div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Effetto del fumo di sigaretta sul trascrittoma della mucosa orale umana</h1>
+<p class="subtitle lead">Analisi bioinformatica dei profili di espressione genica</p>
+</div>
+
+
+<div class="quarto-title-meta-author">
+  <div class="quarto-title-meta-heading">Autore/Autrice</div>
+  <div class="quarto-title-meta-heading">Affiliazione</div>
+  
+    <div class="quarto-title-meta-contents">
+    <p class="author">Attilio Turco - 267161 </p>
+  </div>
+  <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            UNICAL
+          </p>
+      </div>
+  </div>
+
+<div class="quarto-title-meta">
+
+      
+    <div>
+    <div class="quarto-title-meta-heading">Data di Pubblicazione</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">11 gennaio 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="breve-descrizione-della-serie-scelta" class="level1">
+<h1>Breve descrizione della serie scelta</h1>
+<p>ID: <a href="https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE17913">GSE17913</a></p>
+<p>La serie è parte di uno studio che ha analizzato proprio l’effetto del fumo di sigaretta sul trascrittoma della mucosa umana. Lo studio ha trovato che 32 geni hanno mostrato un’espressione aumentata e 9 geni hanno mostrato un’espressione ridotta nella mucosa orale dei fumatori rispetto ai non fumatori.</p>
+<p>Il campione originariamente era n=80, ma ne sono stati depositati 79 perché un campione è stato escluso in base a una <a href="https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE17913#:~:text=One%20sample%20was%20excluded%20from%20the%20study%20based%20on%20a%20quality%20measure%20leaving%2079%20for%20analysis%20and%20deposited%20here">misura di qualità</a>.</p>
+</section>
+<section id="codice-r" class="level1">
+<h1>Codice R</h1>
+<p>Ho usato il codice generato da GEO2R e plotly per la parte del volcano plot</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Codice</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(GEOquery)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(limma)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(umap)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(plotly)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>gset <span class="ot">&lt;-</span> <span class="fu">getGEO</span>(<span class="st">"GSE17913"</span>, <span class="at">GSEMatrix =</span><span class="cn">TRUE</span>, <span class="at">AnnotGPL=</span><span class="cn">TRUE</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">length</span>(gset) <span class="sc">&gt;</span> <span class="dv">1</span>) idx <span class="ot">&lt;-</span> <span class="fu">grep</span>(<span class="st">"GPL570"</span>, <span class="fu">attr</span>(gset, <span class="st">"names"</span>)) <span class="cf">else</span> idx <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>gset <span class="ot">&lt;-</span> gset[[idx]]</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># make proper column names to match toptable </span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">fvarLabels</span>(gset) <span class="ot">&lt;-</span> <span class="fu">make.names</span>(<span class="fu">fvarLabels</span>(gset))</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># group membership for all samples</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>gsms <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"11101101001010001001111111100111011010111000100001"</span>,</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>        <span class="st">"00010010010010110101010101001"</span>)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>sml <span class="ot">&lt;-</span> <span class="fu">strsplit</span>(gsms, <span class="at">split=</span><span class="st">""</span>)[[<span class="dv">1</span>]]</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co"># log2 transformation</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>ex <span class="ot">&lt;-</span> <span class="fu">exprs</span>(gset)</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>qx <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">quantile</span>(ex, <span class="fu">c</span>(<span class="fl">0.</span>, <span class="fl">0.25</span>, <span class="fl">0.5</span>, <span class="fl">0.75</span>, <span class="fl">0.99</span>, <span class="fl">1.0</span>), <span class="at">na.rm=</span>T))</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>LogC <span class="ot">&lt;-</span> (qx[<span class="dv">5</span>] <span class="sc">&gt;</span> <span class="dv">100</span>) <span class="sc">||</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>          (qx[<span class="dv">6</span>]<span class="sc">-</span>qx[<span class="dv">1</span>] <span class="sc">&gt;</span> <span class="dv">50</span> <span class="sc">&amp;&amp;</span> qx[<span class="dv">2</span>] <span class="sc">&gt;</span> <span class="dv">0</span>)</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (LogC) { ex[<span class="fu">which</span>(ex <span class="sc">&lt;=</span> <span class="dv">0</span>)] <span class="ot">&lt;-</span> <span class="cn">NaN</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">exprs</span>(gset) <span class="ot">&lt;-</span> <span class="fu">log2</span>(ex) }</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="co"># assign samples to groups and set up design matrix</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>gs <span class="ot">&lt;-</span> <span class="fu">factor</span>(sml)</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>groups <span class="ot">&lt;-</span> <span class="fu">make.names</span>(<span class="fu">c</span>(<span class="st">"smoker"</span>,<span class="st">"nonsmoker"</span>))</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(gs) <span class="ot">&lt;-</span> groups</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>gset<span class="sc">$</span>group <span class="ot">&lt;-</span> gs</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>design <span class="ot">&lt;-</span> <span class="fu">model.matrix</span>(<span class="sc">~</span>group <span class="sc">+</span> <span class="dv">0</span>, gset)</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(design) <span class="ot">&lt;-</span> <span class="fu">levels</span>(gs)</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>gset <span class="ot">&lt;-</span> gset[<span class="fu">complete.cases</span>(<span class="fu">exprs</span>(gset)), ] <span class="co"># skip missing values</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">lmFit</span>(gset, design)  <span class="co"># fit linear model</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="co"># set up contrasts of interest and recalculate model coefficients</span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>cts <span class="ot">&lt;-</span> <span class="fu">paste</span>(groups[<span class="dv">1</span>], groups[<span class="dv">2</span>], <span class="at">sep=</span><span class="st">"-"</span>)</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>cont.matrix <span class="ot">&lt;-</span> <span class="fu">makeContrasts</span>(<span class="at">contrasts=</span>cts, <span class="at">levels=</span>design)</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>fit2 <span class="ot">&lt;-</span> <span class="fu">contrasts.fit</span>(fit, cont.matrix)</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a><span class="co"># compute statistics and table of top significant genes</span></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>fit2 <span class="ot">&lt;-</span> <span class="fu">eBayes</span>(fit2, <span class="fl">0.01</span>)</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>tT <span class="ot">&lt;-</span> <span class="fu">topTable</span>(fit2, <span class="at">adjust =</span> <span class="st">"fdr"</span>, <span class="at">sort.by =</span> <span class="st">"B"</span>, <span class="at">number =</span> <span class="cn">Inf</span>)</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>tT <span class="ot">&lt;-</span> <span class="fu">subset</span>(tT, <span class="at">select =</span> <span class="fu">c</span>(<span class="st">"Gene.symbol"</span>, <span class="st">"Gene.title"</span>, <span class="st">"logFC"</span>, <span class="st">"AveExpr"</span>, <span class="st">"t"</span>, <span class="st">"P.Value"</span>, <span class="st">"adj.P.Val"</span>, <span class="st">"B"</span>))</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>tT <span class="ot">&lt;-</span> tT[tT<span class="sc">$</span>Gene.symbol <span class="sc">!=</span> <span class="st">""</span>, ]</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>Dato che i geni erano troppi ho implementato questa logica: tengo i 100 più differenzialmente espressi (B-statistics) e prendo l’1% dei rimanenti per vedere comunque i punti alla base del grafico.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Codice</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ordina per B-statistic (decrescente)</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>tT_ordered <span class="ot">&lt;-</span> tT[<span class="fu">order</span>(tT<span class="sc">$</span>B, <span class="at">decreasing =</span> <span class="cn">TRUE</span>), ]</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Mantieni i top 100 geni per B-statistic</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>top_genes <span class="ot">&lt;-</span> tT_ordered[<span class="dv">1</span><span class="sc">:</span><span class="fu">min</span>(<span class="dv">100</span>, <span class="fu">nrow</span>(tT_ordered)), ]</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Geni rimanenti</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>remaining_genes <span class="ot">&lt;-</span> tT_ordered[(<span class="fu">min</span>(<span class="dv">100</span>, <span class="fu">nrow</span>(tT_ordered)) <span class="sc">+</span> <span class="dv">1</span>)<span class="sc">:</span><span class="fu">nrow</span>(tT_ordered), ]</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Campiona il 25% dei geni rimanenti</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)  <span class="co"># per riproducibilità</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>sample_size <span class="ot">&lt;-</span> <span class="fu">floor</span>(<span class="fl">0.01</span> <span class="sc">*</span> <span class="fu">nrow</span>(remaining_genes))</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>sampled_genes <span class="ot">&lt;-</span> remaining_genes[<span class="fu">sample</span>(<span class="fu">nrow</span>(remaining_genes), sample_size), ]</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Combina i due set</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>tT_filtered <span class="ot">&lt;-</span> <span class="fu">rbind</span>(top_genes, sampled_genes)</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Mantiene solo il primo nome e la prima descrizione se sono presenti più geni separati da ///</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>tT_filtered<span class="sc">$</span>Gene.symbol.short <span class="ot">&lt;-</span> <span class="fu">sapply</span>(<span class="fu">strsplit</span>(<span class="fu">as.character</span>(tT_filtered<span class="sc">$</span>Gene.symbol), <span class="st">"///"</span>), <span class="st">`</span><span class="at">[</span><span class="st">`</span>, <span class="dv">1</span>)</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>tT_filtered<span class="sc">$</span>Gene.title.short <span class="ot">&lt;-</span> <span class="fu">sapply</span>(<span class="fu">strsplit</span>(<span class="fu">as.character</span>(tT_filtered<span class="sc">$</span>Gene.title), <span class="st">"///"</span>), <span class="st">`</span><span class="at">[</span><span class="st">`</span>, <span class="dv">1</span>)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>Il volcano plot confronta <strong>Fumatori rispetto a Non Fumatori</strong>. I geni colorati sono quelli con logFC &lt; -0.5 o &gt; 0.5 e adj.P.Val &gt; 0.5. Comunque per l’analisi dei singoli geni ho preso i primi 10 geni più differenzialmente espressi usando la B-statistics.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Codice</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Preparazione dei dati per il volcano plot (sul dataset filtrato)</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>tT_filtered<span class="sc">$</span>neglog10p <span class="ot">&lt;-</span> <span class="sc">-</span><span class="fu">log10</span>(tT_filtered<span class="sc">$</span>P.Value)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Classificazione dei geni</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>tT_filtered<span class="sc">$</span>diffexpressed <span class="ot">&lt;-</span> <span class="st">"Non significativo"</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>tT_filtered<span class="sc">$</span>diffexpressed[tT_filtered<span class="sc">$</span>logFC <span class="sc">&gt;</span> <span class="fl">0.5</span> <span class="sc">&amp;</span> tT_filtered<span class="sc">$</span>adj.P.Val <span class="sc">&lt;</span> <span class="fl">0.05</span>] <span class="ot">&lt;-</span> <span class="st">"Up-regulated"</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>tT_filtered<span class="sc">$</span>diffexpressed[tT_filtered<span class="sc">$</span>logFC <span class="sc">&lt;</span> <span class="sc">-</span><span class="fl">0.5</span> <span class="sc">&amp;</span> tT_filtered<span class="sc">$</span>adj.P.Val <span class="sc">&lt;</span> <span class="fl">0.05</span>] <span class="ot">&lt;-</span> <span class="st">"Down-regulated"</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Etichette per i geni più significativi</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>tT_filtered<span class="sc">$</span>delabel <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>tT_filtered<span class="sc">$</span>delabel[tT_filtered<span class="sc">$</span>adj.P.Val <span class="sc">&lt;</span> <span class="fl">0.001</span> <span class="sc">&amp;</span> <span class="fu">abs</span>(tT_filtered<span class="sc">$</span>logFC) <span class="sc">&gt;</span> <span class="fl">1.5</span>] <span class="ot">&lt;-</span> </span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  tT_filtered<span class="sc">$</span>Gene.symbol[tT_filtered<span class="sc">$</span>adj.P.Val <span class="sc">&lt;</span> <span class="fl">0.001</span> <span class="sc">&amp;</span> <span class="fu">abs</span>(tT_filtered<span class="sc">$</span>logFC) <span class="sc">&gt;</span> <span class="fl">1.5</span>]</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Creazione del volcano plot interattivo con plotly</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>colors <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Up-regulated"</span> <span class="ot">=</span> <span class="st">"#E64B35"</span>, </span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Down-regulated"</span> <span class="ot">=</span> <span class="st">"#3C5488"</span>, </span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Non significativo"</span> <span class="ot">=</span> <span class="st">"grey"</span>)</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">plot_ly</span>(<span class="at">data =</span> tT_filtered, </span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>             <span class="at">x =</span> <span class="sc">~</span>logFC, </span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>             <span class="at">y =</span> <span class="sc">~</span>neglog10p,</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>             <span class="at">type =</span> <span class="st">"scatter"</span>,</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>             <span class="at">mode =</span> <span class="st">"markers"</span>,</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>             <span class="at">color =</span> <span class="sc">~</span>diffexpressed,</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>             <span class="at">colors =</span> colors,</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>             <span class="at">text =</span> <span class="sc">~</span><span class="fu">paste</span>(<span class="st">"Gene:"</span>, Gene.symbol.short,</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>               <span class="st">"&lt;br&gt;log2FC:"</span>, <span class="fu">round</span>(logFC, <span class="dv">3</span>),</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>               <span class="st">"&lt;br&gt;"</span>, Gene.title.short),</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>             <span class="at">hoverinfo =</span> <span class="st">"text"</span>,</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>             <span class="at">marker =</span> <span class="fu">list</span>(<span class="at">size =</span> <span class="dv">6</span>,</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>                          <span class="at">opacity =</span> <span class="fl">0.7</span>,</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>                          <span class="at">line =</span> <span class="fu">list</span>(<span class="at">width =</span> <span class="fl">0.5</span>, <span class="at">color =</span> <span class="st">'white'</span>))) <span class="sc">%&gt;%</span></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">layout</span>(<span class="at">xaxis =</span> <span class="fu">list</span>(<span class="at">title =</span> <span class="st">"log2 Fold Change"</span>,</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>                     <span class="at">zeroline =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>                     <span class="at">zerolinewidth =</span> <span class="dv">1</span>,</span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>                     <span class="at">zerolinecolor =</span> <span class="st">"black"</span>,</span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>                     <span class="at">gridcolor =</span> <span class="st">"lightgray"</span>),</span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>         <span class="at">yaxis =</span> <span class="fu">list</span>(<span class="at">title =</span> <span class="st">"-log10(P-value)"</span>,</span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>                     <span class="at">gridcolor =</span> <span class="st">"lightgray"</span>),</span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>         <span class="at">legend =</span> <span class="fu">list</span>(<span class="at">title =</span> <span class="fu">list</span>(<span class="at">text =</span> <span class="st">"Espressione"</span>)),</span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>         <span class="at">hovermode =</span> <span class="st">"closest"</span>)</span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div class="plotly html-widget html-fill-item" id="htmlwidget-92a93cc8955a47d246d9" style="width:100%;height:520px;"></div>
+<script type="application/json" data-for="htmlwidget-92a93cc8955a47d246d9">{"x":{"visdat":{"b3d1458196cc":["function () ","plotlyVisDat"]},"cur_data":"b3d1458196cc","attrs":{"b3d1458196cc":{"x":{},"y":{},"mode":"markers","text":{},"hoverinfo":"text","marker":{"size":6,"opacity":0.69999999999999996,"line":{"width":0.5,"color":"white"}},"color":{},"colors":["#E64B35","#3C5488","grey"],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"xaxis":{"domain":[0,1],"automargin":true,"title":"log2 Fold Change","zeroline":true,"zerolinewidth":1,"zerolinecolor":"black","gridcolor":"lightgray"},"yaxis":{"domain":[0,1],"automargin":true,"title":"-log10(P-value)","gridcolor":"lightgray"},"legend":{"title":{"text":"Espressione"}},"hovermode":"closest","showlegend":true},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":[-0.54031055574934506,-0.6973220199182828,-0.66201737847929731,-0.72605778110881669,-0.68947508717776707,-0.61145632776363534,-0.66800514231374297],"y":[7.3536601032467459,6.4988849441225431,5.6266241951992164,5.6003597733633166,5.2359295355714135,5.1956229239969218,5.1772124851472627],"mode":"markers","text":["Gene: CYSLTR1 <br>log2FC: -0.54 <br> cysteinyl leukotriene receptor 1","Gene: IGF2BP3 <br>log2FC: -0.697 <br> insulin like growth factor 2 mRNA binding protein 3","Gene: SOX9 <br>log2FC: -0.662 <br> SRY-box 9","Gene: LEPROT <br>log2FC: -0.726 <br> leptin receptor overlapping transcript","Gene: LEPROT <br>log2FC: -0.689 <br> leptin receptor overlapping transcript","Gene: ZNF83 <br>log2FC: -0.611 <br> zinc finger protein 83","Gene: LEPROT <br>log2FC: -0.668 <br> leptin receptor overlapping transcript"],"hoverinfo":["text","text","text","text","text","text","text"],"marker":{"color":"rgba(60,84,136,1)","size":6,"opacity":0.69999999999999996,"line":{"color":"white","width":0.5}},"type":"scatter","name":"Down-regulated","textfont":{"color":"rgba(60,84,136,1)"},"error_y":{"color":"rgba(60,84,136,1)"},"error_x":{"color":"rgba(60,84,136,1)"},"line":{"color":"rgba(60,84,136,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[0.27903063760398794,0.41962941312555557,0.23571752608441798,0.21675902238256128,0.41858714993408075,0.42047870171552404,0.26982786045410467,0.23199425332006829,0.45142140849827239,0.39254363295987726,0.3262066957866967,0.23774447104125507,0.40842684926080608,-0.45872736958791638,0.2239292499217127,0.37336047172164122,0.26360136569665382,-0.39337647660423603,0.28527665225234156,0.44716896947058338,0.36241221327352502,-0.29517841782450027,0.25191995341821549,0.20118130289619529,0.21940554223171915,0.28963273491812735,0.36611552029720418,0.1545681929971523,0.21146178786687564,0.14914938447476622,-0.33730466314744945,0.14825658898851835,0.28029770401678178,0.23190620482463498,0.35451653751353174,0.28754272146928006,0.28585615460353075,-0.41326472069769693,0.25273267580619052,0.17153113847731305,0.38150802348585255,0.13144684027603226,0.15945924434581293,0.35695859182208167,0.21249812653382349,-0.19121161771069239,0.3601794511169647,0.35135570023716589,-0.13395258471398286,0.33497754703814664,0.44200934554235349,-0.33700140813750057,0.20774010590652114,0.20216691404813858,0.22041474757572477,0.17281138237658134,-0.49515775839516607,-0.37451197392358182,-0.20148002129233156,-0.22810145610383259,0.24861611485740553,0.45204868881980786,-0.25866548282438817,0.19719359033868411,-0.48967512357048459,-0.15033309713663989,-0.17078089869036184,0.084885974654968166,0.064075317204100202,0.11400794095721967,0.036735448449048747,0.059440284730739812,0.019233510482479232,-0.00026685001561155275,-0.053035198534284955,-0.0061755689536471259,0.076572459471327292,0.010711962586009705,0.0095185127560490912,-0.030258533635072471,0.073722062357362894,-0.017395048332474072,0.0092185944104130613,0.073008246636813823,0.14518239109404973,-0.13503955701390691,0.18356543345352438,0.039140088705162057,0.35150853834621998,-0.071236113360497733,0.0033082121220839866,0.0087438007053948219,-0.067496624389868032,0.035106150643493095,0.17934583592992936,0.032951807589416404,0.0060294027077696377,0.040909923612650445,0.020393113307632493,-0.26973920062302348,0.040887937495729609,-0.017744038447832011,0.067706593800182624,-0.028344234373752109,-0.024754498439722994,-0.11893059367333869,-0.0049065252841029583,0.011217147985876252,0.075707052718229306,-0.04989400158834556,0.047413007149405662,-0.13921331833302286,-0.088448593137135489,-0.047827382592373624,0.14746168096206702,0.0057970575992989382,-0.021410240869828456,0.1224733745917721,0.081619682725810883,-0.046109028974055555,0.074675559464953523,-0.023647459328856701,-0.034973431655288323,0.054432883662544729,0.0084463900322444552,-0.054346277617208116,0.03544941339880614,-0.12027693775857085,-0.12790721107913683,0.09090890922653827,0.01514329405130832,-0.049976598175520692,-0.02840161030498578,-0.016910828104750308,0.10507921014411892,-0.0032103456428975718,-0.25086679005430135,0.045063196832029639,0.059858310004463178,0.10265790387626383,0.18493171255761176,0.065643242874598329,-0.3793444911830699,-0.033280631582051079,-0.010341915896713516,-0.055521075973877121,-0.022779226577785749,0.04503445913352877,-0.16551116011480715,-0.014191543184733035,-0.015141580674977284,0.0056836276419787168,0.082760236088650352,0.08819520902361333,0.071958635010782146,-0.081493927335678507,0.033510556406486813,0.040280846821792338,0.047788443398643743,-0.12793605977679334,-0.065091315364822044,-0.14449011873092932,-0.13077824848358421,-0.079592784639973324,-0.154256131013641,0.010558924499827427,-0.77529939218502086,0.02061618611712257,0.065936378555346842,-0.094886969775887842,0.038822554976835288,-0.064171393521581077,0.0041651179823585238,0.027128105205112441,-0.082936377499908787,0.25003689110199367,-0.024536143968908242,0.017222469747252944,0.045194091867871933,-0.12081778507807339,0.0945409953495564,-0.090723140743572017,0.099550104903089576,0.053759570949067914,-0.012607712981560493,0.081849921778585077,-0.035934263640641007,0.021710197003458553,0.0046357441184379233,-0.010188280950706563,0.040309147532959777,-0.10974860836290468,0.097282755858921099,-0.08246721560840431,0.030631777897539791,0.04043482896610584,-0.10054339477465479,0.021624327673548827,-0.074751936596018531,-0.036827866654673969,0.07369758943823701,-0.022627918671197733,0.028911503469007727,-0.16032769289639326,0.057430473425992723,0.0356350610429641,-0.009637475060873868,-0.11432304849781527,0.12296220541569447,-0.017811411684666822,0.074266309523762786,-0.049821238539411894,-0.015112032144829257,-0.024376357222994471,0.089279067861284922,0.11066421477566202,-0.042570668939238221,0.013277945906899014,-0.027598886443649384,-0.15823627264764095,0.024102647347477024,0.0023218535005531393,0.039477242844945692,-0.0017213206269111048,-0.27539843922660445,0.12358818393304505,-0.0030115685045539742,-0.053167677949979009,-0.35639952446414291,0.031935258148539702,-0.014508379282685446,0.05913569646055894,-0.027013560520649627,-0.04232341870730405,-0.13901754277052802,-0.015320172293389334,-0.030506907462211963,-0.044683826148567363,0.046411512258443199,0.27892833322783694,-0.11940565571415451,-0.10153939772263643,0.048267372208907311,0.10415944698174329,-0.024446081848795487,-0.034159264154949298,0.012785413076270125,0.050766017599497726,0.045455802681246382,-0.076103209912533387,0.0044627106345531686,0.10134823080792099,0.018189310517550794,-0.042769486884508101,-0.11523438399129837,0.035943935305382091,0.084236132420278054,0.04877216098784265,0.070333138459821143,-0.059796269079752662,0.048279052468854111,-0.23887764199066019,0.1089557202949365,-0.038118722563938778,-0.0344774401829957,0.065262508421580101,0.26227894612136282,-0.0058692220211256085,-0.15259821536558249,0.012533963905116963,0.013572650884089654,-0.02710551765938618,-0.036775492505647378,0.062016347977269959,-0.059822970471355319,-0.06621043728169429,0.06186328949767006,0.042401097781787911,0.071485363282252301,0.01867663515395801,-0.024448039186088621,0.038255357976899607,-0.061275620535695907,0.041324100357661209,0.010427439848297304,0.034017799220076306,0.040083421797426411,0.058601429144284012,-0.061938105077898875,0.018197024929047068,-0.080984549762648683,-0.038300855979880311,0.017320521579431869,-0.20160628808125214,-0.070285972687871734,-0.026079132454671416,-0.066123660912692728,0.036561494677769701,0.087293110378736216,0.038975049041788612,-0.033492916762329461,0.071793959631480497,0.077971601949776925,0.073552169852020732,0.017261358074458499,-0.021655915374439338,-0.04874322313897661,-0.017106623300356283,-0.081368436182805759,0.0011438665681700044,-0.017064627105337848,0.07342909655240959,0.0292374197218912,0.0056234371840693242,-0.031645471059029262,-0.0017982293699674301,0.010549664076645815,-0.02825278638315476,0.046910526727420354,-0.093978156375941424,-0.10895656213120919,-0.0586385384678767,0.091451514702963976,0.20679602901291183,0.00066548712121994313,-0.020782640489614312,0.011971547609876509,-0.099014334781085012,0.046181500016592381,-0.19030162237448689,0.0025561557759892217,-0.1819268437464352,0.062718273154776405,-0.0088525372540440017,-0.13650168835585275,-0.029476759220858018,-0.17657661511415412,0.057561295397031031,0.10450550283028903,0.08533198026446609,-0.035184444357975408,0.10933005691656206,-0.088765220431740843,0.015221422586487954,-0.0073313948895519232,0.007512487103744192,0.079237781685743691,0.023313271309143069,0.002727042198801044,-0.10814009030938543,-0.18252120592547882,0.10786851375548245,0.044883465610232598,0.078156057979886562,-0.0084065584253441017,-0.0019306811129027324,0.19137704927413779,-0.0091890362762443445,0.067036270458805447,0.034761930534395802,0.064367970500043725,0.030255047389116996,-0.22023417706302961,0.0022141257192522801,-0.071146183491259229,0.16904627927445226,-0.13057713784739722,0.002468631074389549,-0.065211398051337355,0.013614909963260757,-0.074732531254415591,0.00052500871857441567,-0.022193255599336048,0.035084871967157483,0.17418654064210504,0.13942314057718264,0.1982637447999771,0.04635161069882443,-0.072958572394952625,0.00016554040124638902,0.040340195420177416,-0.093344730093848582,0.075426085320851044,-0.053600717154708377,-0.037629375970165135,0.09310892053765496,0.041923247629984672,-0.015644983442262728,-0.053866820057349329,-0.029966689301187621,-0.099863337093390125,0.035833005581483945,-0.0090976993861850985,-0.00096361374114106724,-0.0024001225405996252,0.04692039744999299,-0.045543141856752012,0.021939901840805298,-0.0087530871328787008,-0.096204039404384822,0.031904295051832676,0.098773213554654404,0.089818070417543971,0.10201170313030605,-0.068700167614791141,0.081166461562432346,0.088989644899905684,0.12318048129991155,0.12385992514940725,-0.15876587385241692,0.018124892275411142,0.14232560587452525,-0.01375097985707896,0.05611448063735569,-0.071506163467374595,-0.051101376388994701,0.17801635983924413,0.029635115271451351,-0.020921419206026748,-0.26631372065968151,0.070500475329919432,-0.077904343910925711,-0.019445108219473539,-0.0045687658041737578,-0.12079261147202569,0.037623578043898487,-0.0058929288819462577,0.040854875058166762,-0.36602264664478579,0.099905428232985649,0.019488782230437707,-0.055803204652969285,0.085463228269690106,-0.029947599822205184,-0.059925728670858547,0.1702095638537573,-0.00055647281760595746,0.14953472296141612,0.077433412561570769,-0.31001406552516286,0.014679149293316485,-0.14447250043612314,0.11696688163836466,-0.043712661119201357,-0.021341960027386975,0.11127048699631903,-0.0094295178670993351,-0.001427924419076021,-0.076779325050841063,-0.0086860479269423863,0.076873845691011411,-0.036480085405021345,-0.15639733033992531,0.067090400698894825,-0.025314942684246056,-0.24948480459135247,0.017008404750113115,-0.11983002969704071,-0.016711114253540771,-0.073068621596910077,0.065672921050736299,0.084813787548286612,0.3506195114708035,0.020573295988326024,-0.081944067699966538,-0.022870600199180746,0.027702936611113671,0.080251104799187623,-0.040698483771040017,-0.029709508355137082,-0.14849333858275315,0.080668743607169802,-0.066500259459814082,-0.020390016066553329,0.092061986828926301,-0.0024005525028965025,0.088913795734856471,0.017355309693564802,0.03243746941486414,0.048384561293101758,-0.017563720444427666,0.0022105448760321167,0.038852499736966806,-0.013135222333358954,0.035040683930740002,-0.0058945740358238297,0.060394397478571449,-0.078426787857837521,0.010563735269354613,-0.23025222746509577,-0.012969708315912598,0.017963853774385363,0.11837989335993981,0.032637105185170157,0.10889630686519958,0.14875678044399177,0.045322191392940248,0.15463578318143512,-0.022298584192554038,-0.015254445609899747,0.032779478493376146,0.035050206199450429,-0.0040051971460925984,0.024443827842172361,0.039527364704444068,-0.053324868891705179,0.0029556227504308197,0.0046918930488466515,-0.01152920581107697,0.050923311819515149,-0.19123759398997375,-0.059822169187017771,0.034321812894361869,-0.081527428313171058,-0.01490956478234029,-0.095246461301107033],"y":[7.6973171305477583,7.6752336332852424,7.2144282441806062,7.1895997502256677,7.1345025516767295,7.0489296692816126,7.0451089990128057,7.0049648626142256,6.8508552069929358,6.827560368033029,6.5261874804203455,6.3707065705274415,6.3430314842661657,6.1972552505676894,6.1707977840635415,6.1500877863785588,6.1111270687608421,5.9794610093704712,5.822278812518995,5.8199837959226679,5.8021298556923382,5.7618951418058133,5.7557869483964987,5.7373359571471001,5.714877876688222,5.6136954605740463,5.5804702485829019,5.5469468509771191,5.5028114174608209,5.4804490741694227,5.479164585728121,5.4260593528137688,5.4202892112083951,5.4112732018432901,5.3868691414904122,5.3487108220745467,5.340632367334277,5.321357113175381,5.3046627967477065,5.2691790326677221,5.2458047949974542,5.2445362431903595,5.2216280205593222,5.2078766019805878,5.1958014559991126,5.1593966902527919,5.1381403207345011,5.1354388822392538,5.1346803224741757,5.0819430339791394,5.0314936212973809,4.9933795538018675,4.9788653196977606,4.9456611316531403,4.9340198526554184,4.9237406679532967,4.9039435800131841,4.9008488136329111,4.8777707894900022,4.8609607421469505,4.8544759166509124,4.8470857343855602,4.8436928211446117,4.8423141700497467,4.8204233976982609,4.7963682525129965,0.1782184465728314,1.1195627201374816,0.66693107407935182,1.2192292639515032,0.12822672285119852,1.0977821088779052,0.18465108607989236,0.0016586738144771043,0.81244765746565051,0.072013729075434255,0.29361855737573483,0.043596226669319893,0.064365268141141282,0.45290990198272152,0.94931353660631546,0.18434994696343679,0.12170159399839089,0.87906254237295189,0.70806343363182245,1.0883772881961928,0.23088607735951544,0.39612922898807656,4.1206503337936589,1.0034430889770161,0.037810906181345832,0.12464687444900131,1.4173079675823395,0.54145506627200113,4.5980003222804857,0.18359709039100297,0.063954239663969417,0.78188174609315808,0.37238131092091709,3.9518693144027024,0.26884844592104917,0.15465818984811178,0.43452309969138381,0.33510594927555903,0.096265422047989824,0.36133955945428059,0.0808632881763999,0.10730568211996679,1.242891392204527,0.059513970635992168,1.4980906553635545,1.045601563780419,0.49966510287622351,0.36230812526845874,2.2645138255234594,0.006286418351655056,0.13982060831309059,0.85380064934206423,0.91668069363172267,0.51613474155373162,0.89213981316146573,0.33345953198942874,0.22969817061467732,1.1081889892149372,0.093406923610258749,0.65649074540561836,0.58170720425062872,1.1490898399248626,1.7982066617649193,1.2522941305488218,0.1806863426365212,0.28321734889892408,0.28387237855759428,0.22408020629274258,0.65516037259945781,0.033617573113921259,1.702100739679083,0.43918238753205413,0.94809089388324796,0.89412258178682114,0.69321767278067636,0.99926468604225427,2.6288726206516175,0.31762926721422924,0.12686440003328686,0.80003334791544256,0.22771852677608723,1.0430548524182215,0.88301241676305942,0.16350799510126585,0.1518111114655242,0.064180409023162271,1.1835190421401991,1.1169501040408476,0.82273867105462106,1.1137360589780352,0.47272293581466152,0.34645037622069752,0.4106853137907564,1.8429533073366624,0.95045518980745824,2.5851984297584067,2.2485165915856338,0.37696739663111861,1.4189013164240505,0.08159225381789996,2.1790518430789829,0.28091839890046727,0.49209981655997775,1.0001635053988454,0.538062677256269,1.3912810751720408,0.03049485934252924,0.36352764292203654,0.60093019996117969,3.9402426534089714,0.35407762996604597,0.22964817783513655,0.51649920531217053,0.57070754933533063,1.4091660850435028,0.42666094568175872,1.998311324157968,0.40025383818682414,0.11080233357693624,0.97494629874239791,0.23609653361745278,0.24363719114892435,0.03109771158796484,0.10393098418404169,0.58125578435302183,0.50423668051581283,1.3071081549078705,1.2787200866743942,0.24410128739684242,0.60011738530791214,1.4477204679036781,0.17046703976370797,0.74028125515779508,0.21558193501521533,1.5423446612704577,0.1858801454049851,0.32205914491985288,1.2821205956598749,0.63965445593500203,0.37791963125136918,0.10532444893718731,1.0267972995988963,1.709764200117954,0.22668857520413307,1.5741681996259598,0.46646786625497905,0.18473911080341021,0.14566519584205179,1.466858305494827,2.6768599073196926,0.74881623138152464,0.22632724680355218,0.25017720446148167,1.6893325501374055,0.3580233062526843,0.025077073345237615,0.53813021404664441,0.012764622017944569,1.508959143749258,1.5670062169613908,0.043589926092573124,0.88191243915197537,4.161225722972457,0.2533248678392338,0.11014558213522074,1.1321034768351224,0.27317289718688309,0.68468350616798768,1.8663092495639597,0.22472596546764553,0.32574173464704936,0.90194052165801597,0.54164994965426194,2.1717412850011928,0.92619720856888399,1.0568512476229988,0.67264496881351177,0.54116278800353446,0.47704227001193222,0.63644599229984444,0.10874106841955379,1.1611643859717435,0.63613772009845015,0.7414819763318854,0.036597499499066162,1.3768975535566201,0.16279031526052712,0.79398027480363986,0.9363706673536264,0.7557779427967779,0.50979625636068271,0.84535972357279232,1.1036748333361277,1.3924633930567478,0.6076975724607323,0.82091229257231779,2.0432906757706175,0.44890695773054645,0.67569466165424963,0.8264011783975368,4.5220326642597239,0.0494181179764673,2.3192615401127537,0.11733045989431716,0.038046692638775866,0.22941450331242991,0.22165621877168964,0.46449234527484723,0.2599987528568361,0.59356175095746189,0.54414904566125444,0.23310467004032306,0.97791467166791624,0.17234121166584582,0.17065776791696072,0.44265634055480274,0.81721893643800469,0.50042128175849221,0.10006376393893057,0.30916935344098256,0.23807258254440997,0.70786191522742858,0.70345809891606847,0.17822538395023224,1.2292130649872275,0.43769819535661969,0.22920901251036335,1.3385505569475615,0.52717400665873937,0.31426289156856907,0.58247911359845439,0.36214950528914042,1.126264253465431,0.61558538046421596,0.39770456052694736,1.175129902737893,0.14232913128287422,1.1853319584974493,0.2639897190683389,0.19617829525725422,0.55800472528869283,0.11591505188595738,0.55751787036808642,0.011686227557383452,0.058061623700743047,0.40084909473255681,0.28779809453867244,0.082857454932080563,0.23465546198947737,0.011878485144214085,0.11366736470112015,0.33569390136874361,0.3927283289055441,1.4343640772736028,0.90463058039308952,0.66110576607124394,1.0506314710636362,3.0886964598698228,0.0052877341168783816,0.33895939283241622,0.1547296935464782,1.35727436696138,0.84999971114857353,2.9451224378498333,0.028070394636380936,1.6468399715969331,1.1584259453049022,0.05120738629732003,1.596537551107557,0.37909104346257871,2.4897104180380403,0.60943906630923161,1.0606069592871885,1.0887995719454537,0.16121093956307417,0.99450994851062058,0.75699392216520311,0.19789574260368417,0.067860486242116269,0.066375532168844176,1.4975349604015071,0.14994280383138942,0.03854577116932624,1.8958399330792013,2.9278551685062237,1.7632454082858984,0.34843439501303369,0.42276552807289935,0.078424066874106316,0.010237096907081931,3.6754119149757249,0.12108981020701053,1.1029628382727974,0.44254457793445823,0.94840334217619637,0.29234599302356856,2.0845903482541539,0.0089835016804980013,0.81037475583293361,0.90617046526407208,0.46951384580991545,0.013208599026480628,0.23514888644556473,0.11261853285886977,0.97583746665243476,0.0037750713245821329,0.27463292581965937,0.40489385957107421,1.5972695688188103,2.0851328199674537,2.9222152272251178,0.6968082302720553,1.2184865848650821,0.0014798554070918656,0.10658213330102863,1.1254480683440811,1.1705933539653404,0.41309823522737688,0.2764977677169787,1.3985379512026439,0.47890082892363262,0.18510136658798149,0.45650070848997976,0.37921497034178575,1.5992111875716419,0.33120134034752935,0.063734311180062411,0.0068909403953027965,0.021509026911996496,0.87329197121886581,0.82886397119314326,0.27915787664041525,0.11069639833300554,0.90427186369430901,0.39515578203452983,1.1721178768992255,2.2302472699722204,0.71952638639180877,1.1671150272843391,1.3571754648150594,1.1040084157222887,1.7237131595578976,3.2119388670184907,1.6795055088762261,0.15215631305823785,2.4480249700130492,0.12338223692069147,0.86138827512533311,0.63194935611785463,0.55579267473286054,2.0333073055970479,0.53286157531503053,0.39956331387565064,1.8991512512911746,0.95248973874335618,1.0757044201360169,0.1466714898917674,0.048139945424836211,1.4495592086816476,0.45297367770922603,0.059085517139179755,0.85033697350664439,2.926258404227895,0.8210481085317427,0.16706883315521898,0.58280166170884651,1.8219502785562121,0.69744148212597723,0.062873452262581744,1.9902352834053383,0.007997854513285399,1.9162038908415555,1.3377238794203787,2.3651690320367842,0.15960911938767416,1.922757221397926,2.1715708130563858,0.16905976331077557,0.19625226316834132,1.440352432450499,0.12436635827784814,0.012525092376034072,1.5672304608187293,0.041772577789765647,0.36751624805964878,0.43062465953687595,1.2809689864932139,0.44931855430325318,0.26093512170895278,3.3740345982443953,0.089377412238229273,1.7726110656247975,0.16405798890509826,0.70367133314512531,0.48941305109650313,1.2768624488642819,3.0792100740363999,0.18866260692773293,0.99299821496194096,0.2976881415889317,0.27615301919302127,0.70034526782783391,0.4202085995197285,0.31155049986775579,2.8457530276049456,1.1849975122442444,0.71067595752896817,0.24539867520644792,1.3783501420790205,0.014349596246583217,1.2466199115647558,0.27822354393153376,0.29985407570609862,0.90521539311042298,0.19872425054047466,0.018095268063159545,0.38398971971231938,0.1431735429200891,0.34909649026224776,0.031303075742532938,0.52624080255525285,1.1013175080866762,0.11011771821728746,2.2879046485530705,0.17199287796841778,0.21895833696836201,1.3376083215596108,0.34869593315884406,1.7424005534226759,1.9875074800281536,0.55419543377487368,0.74475523330114857,0.1168610347770915,0.09085949309667965,0.44354896048191744,0.28244241628625039,0.011841535762661804,0.4411377582754123,0.41718426650424129,0.65214110895687172,0.027799874687743625,0.052234017648434057,0.16783322330422729,0.62577668789077534,1.1218856031741331,0.42786707199050522,0.41447321317658864,1.5124420872420594,0.23409309354674149,0.49404522728288131],"mode":"markers","text":["Gene: IMPDH2 <br>log2FC: 0.279 <br> inosine monophosphate dehydrogenase 2","Gene: S100A12 <br>log2FC: 0.42 <br> S100 calcium binding protein A12","Gene: ITGAL <br>log2FC: 0.236 <br> integrin subunit alpha L","Gene: DNLZ <br>log2FC: 0.217 <br> DNL-type zinc finger","Gene: MFSD12 <br>log2FC: 0.419 <br> major facilitator superfamily domain containing 12","Gene: CORO2A <br>log2FC: 0.42 <br> coronin 2A","Gene: SURF2 <br>log2FC: 0.27 <br> surfeit 2","Gene: ITGB7 <br>log2FC: 0.232 <br> integrin subunit beta 7","Gene: YIF1B <br>log2FC: 0.451 <br> Yip1 interacting factor homolog B, membrane trafficking protein","Gene: BAMBI <br>log2FC: 0.393 <br> BMP and activin membrane bound inhibitor","Gene: ADAMTS15 <br>log2FC: 0.326 <br> ADAM metallopeptidase with thrombospondin type 1 motif 15","Gene: AHCYL1 <br>log2FC: 0.238 <br> adenosylhomocysteinase like 1","Gene: PIR <br>log2FC: 0.408 <br> pirin","Gene: RASSF6 <br>log2FC: -0.459 <br> Ras association domain family member 6","Gene: TIFAB <br>log2FC: 0.224 <br> TIFA inhibitor","Gene: TMEM119 <br>log2FC: 0.373 <br> transmembrane protein 119","Gene: TRIM62 <br>log2FC: 0.264 <br> tripartite motif containing 62","Gene: CYSLTR1 <br>log2FC: -0.393 <br> cysteinyl leukotriene receptor 1","Gene: CORO2A <br>log2FC: 0.285 <br> coronin 2A","Gene: LYNX1 <br>log2FC: 0.447 <br> Ly6/neurotoxin 1","Gene: MIR8085 <br>log2FC: 0.362 <br> microRNA 8085","Gene: MTMR10 <br>log2FC: -0.295 <br> myotubularin related protein 10","Gene: SORCS2 <br>log2FC: 0.252 <br> sortilin related VPS10 domain containing receptor 2","Gene: HNRNPUL2-BSCL2 <br>log2FC: 0.201 <br> HNRNPUL2-BSCL2 readthrough (NMD candidate)","Gene: NOL6 <br>log2FC: 0.219 <br> nucleolar protein 6","Gene: RASAL1 <br>log2FC: 0.29 <br> RAS protein activator like 1","Gene: BMP7 <br>log2FC: 0.366 <br> bone morphogenetic protein 7","Gene: C10orf90 <br>log2FC: 0.155 <br> chromosome 10 open reading frame 90","Gene: CYB561A3 <br>log2FC: 0.211 <br> cytochrome b561 family member A3","Gene: MTX1 <br>log2FC: 0.149 <br> metaxin 1","Gene: ZNF542P <br>log2FC: -0.337 <br> zinc finger protein 542, pseudogene","Gene: GORASP2 <br>log2FC: 0.148 <br> golgi reassembly stacking protein 2","Gene: AHCYL1 <br>log2FC: 0.28 <br> adenosylhomocysteinase like 1","Gene: NADK2 <br>log2FC: 0.232 <br> NAD kinase 2, mitochondrial","Gene: BMP7 <br>log2FC: 0.355 <br> bone morphogenetic protein 7","Gene: CFP <br>log2FC: 0.288 <br> complement factor properdin","Gene: TTC39A <br>log2FC: 0.286 <br> tetratricopeptide repeat domain 39A","Gene: CYYR1 <br>log2FC: -0.413 <br> cysteine and tyrosine rich 1","Gene: ACAP1 <br>log2FC: 0.253 <br> ArfGAP with coiled-coil, ankyrin repeat and PH domains 1","Gene: POM121C <br>log2FC: 0.172 <br> POM121 transmembrane nucleoporin C","Gene: MAPT <br>log2FC: 0.382 <br> microtubule associated protein tau","Gene: HS1BP3 <br>log2FC: 0.131 <br> HCLS1 binding protein 3","Gene: LAGE3 <br>log2FC: 0.159 <br> L antigen family member 3","Gene: DKK3 <br>log2FC: 0.357 <br> dickkopf WNT signaling pathway inhibitor 3","Gene: DDAH2 <br>log2FC: 0.212 <br> dimethylarginine dimethylaminohydrolase 2","Gene: GALNT2 <br>log2FC: -0.191 <br> polypeptide N-acetylgalactosaminyltransferase 2","Gene: CYGB <br>log2FC: 0.36 <br> cytoglobin","Gene: ADRB1 <br>log2FC: 0.351 <br> adrenoceptor beta 1","Gene: YWHAZ <br>log2FC: -0.134 <br> tyrosine 3-monooxygenase/tryptophan 5-monooxygenase activation protein zeta","Gene: GDA <br>log2FC: 0.335 <br> guanine deaminase","Gene: RUNX3 <br>log2FC: 0.442 <br> runt related transcription factor 3","Gene: OXR1 <br>log2FC: -0.337 <br> oxidation resistance 1","Gene: IPO4 <br>log2FC: 0.208 <br> importin 4","Gene: CDC42EP2 <br>log2FC: 0.202 <br> CDC42 effector protein 2","Gene: ABCB6 <br>log2FC: 0.22 <br> ATP binding cassette subfamily B member 6 (Langereis blood group)","Gene: PRDX2 <br>log2FC: 0.173 <br> peroxiredoxin 2","Gene: STAC <br>log2FC: -0.495 <br> SH3 and cysteine rich domain","Gene: PHACTR2 <br>log2FC: -0.375 <br> phosphatase and actin regulator 2","Gene: MCEE <br>log2FC: -0.201 <br> methylmalonyl-CoA epimerase","Gene: WLS <br>log2FC: -0.228 <br> wntless Wnt ligand secretion mediator","Gene: SRM <br>log2FC: 0.249 <br> spermidine synthase","Gene: DGAT2 <br>log2FC: 0.452 <br> diacylglycerol O-acyltransferase 2","Gene: GRAMD3 <br>log2FC: -0.259 <br> GRAM domain containing 3","Gene: NEDD8-MDP1 <br>log2FC: 0.197 <br> NEDD8-MDP1 readthrough","Gene: PER3 <br>log2FC: -0.49 <br> period circadian clock 3","Gene: CAST <br>log2FC: -0.15 <br> calpastatin","Gene: KLHL41 <br>log2FC: -0.171 <br> kelch like family member 41","Gene: USP36 <br>log2FC: 0.085 <br> ubiquitin specific peptidase 36","Gene: FRA10AC1 <br>log2FC: 0.064 <br> fragile site, folic acid type, rare, fra(10)(q23.3) or fra(10)(q24.2) candidate 1","Gene: CRYL1 <br>log2FC: 0.114 <br> crystallin lambda 1","Gene: IGHM <br>log2FC: 0.037 <br> immunoglobulin heavy constant mu","Gene: KCNQ2 <br>log2FC: 0.059 <br> potassium voltage-gated channel subfamily Q member 2","Gene: UNC5A <br>log2FC: 0.019 <br> unc-5 netrin receptor A","Gene: CEP57 <br>log2FC: 0 <br> centrosomal protein 57","Gene: SLCO1B3 <br>log2FC: -0.053 <br> solute carrier organic anion transporter family member 1B3","Gene: FAM26D <br>log2FC: -0.006 <br> family with sequence similarity 26 member D","Gene: CRY1 <br>log2FC: 0.077 <br> cryptochrome circadian clock 1","Gene: PIGR <br>log2FC: 0.011 <br> polymeric immunoglobulin receptor","Gene: TYW5 <br>log2FC: 0.01 <br> tRNA-yW synthesizing protein 5","Gene: CALCOCO2 <br>log2FC: -0.03 <br> calcium binding and coiled-coil domain 2","Gene: PYCARD-AS1 <br>log2FC: 0.074 <br> PYCARD antisense RNA 1","Gene: GATAD1 <br>log2FC: -0.017 <br> GATA zinc finger domain containing 1","Gene: CAAP1 <br>log2FC: 0.009 <br> caspase activity and apoptosis inhibitor 1","Gene: PLEKHA2 <br>log2FC: 0.073 <br> pleckstrin homology domain containing A2","Gene: SLC44A5 <br>log2FC: 0.145 <br> solute carrier family 44 member 5","Gene: GCNT1 <br>log2FC: -0.135 <br> glucosaminyl (N-acetyl) transferase 1, core 2","Gene: TXLNB <br>log2FC: 0.184 <br> taxilin beta","Gene: WASH1 <br>log2FC: 0.039 <br> WAS protein family homolog 1","Gene: AKR1C1 <br>log2FC: 0.352 <br> aldo-keto reductase family 1 member C1","Gene: ELF2 <br>log2FC: -0.071 <br> E74 like ETS transcription factor 2","Gene: IQCF5 <br>log2FC: 0.003 <br> IQ motif containing F5","Gene: BCAP29 <br>log2FC: 0.009 <br> B-cell receptor-associated protein 29","Gene: ZNF506 <br>log2FC: -0.067 <br> zinc finger protein 506","Gene: UBL5 <br>log2FC: 0.035 <br> ubiquitin like 5","Gene: TXN2 <br>log2FC: 0.179 <br> thioredoxin 2","Gene: NLK <br>log2FC: 0.033 <br> nemo like kinase","Gene: TBX5 <br>log2FC: 0.006 <br> T-box 5","Gene: PGRMC1 <br>log2FC: 0.041 <br> progesterone receptor membrane component 1","Gene: MORC1 <br>log2FC: 0.02 <br> MORC family CW-type zinc finger 1","Gene: VEGFA <br>log2FC: -0.27 <br> vascular endothelial growth factor A","Gene: CYTH2 <br>log2FC: 0.041 <br> cytohesin 2","Gene: FMO4 <br>log2FC: -0.018 <br> flavin containing monooxygenase 4","Gene: RHOBTB3 <br>log2FC: 0.068 <br> Rho related BTB domain containing 3","Gene: SLC25A27 <br>log2FC: -0.028 <br> solute carrier family 25 member 27","Gene: LOC100288152 <br>log2FC: -0.025 <br> uncharacterized LOC100288152","Gene: COL12A1 <br>log2FC: -0.119 <br> collagen type XII alpha 1 chain","Gene: LOC105370580 <br>log2FC: -0.005 <br> uncharacterized LOC105370580","Gene: MFN1 <br>log2FC: 0.011 <br> mitofusin 1","Gene: TRAF3IP2 <br>log2FC: 0.076 <br> TRAF3 interacting protein 2","Gene: TTTY14 <br>log2FC: -0.05 <br> testis-specific transcript, Y-linked 14 (non-protein coding)","Gene: SLC10A4 <br>log2FC: 0.047 <br> solute carrier family 10 member 4","Gene: CDH5 <br>log2FC: -0.139 <br> cadherin 5","Gene: TMEFF2 <br>log2FC: -0.088 <br> transmembrane protein with EGF like and two follistatin like domains 2","Gene: WWTR1 <br>log2FC: -0.048 <br> WW domain containing transcription regulator 1","Gene: SLC25A1 <br>log2FC: 0.147 <br> solute carrier family 25 member 1","Gene: ACTN2 <br>log2FC: 0.006 <br> actinin alpha 2","Gene: ITGB3BP <br>log2FC: -0.021 <br> integrin subunit beta 3 binding protein","Gene: NR4A2 <br>log2FC: 0.122 <br> nuclear receptor subfamily 4 group A member 2","Gene: TTC38 <br>log2FC: 0.082 <br> tetratricopeptide repeat domain 38","Gene: CDCP1 <br>log2FC: -0.046 <br> CUB domain containing protein 1","Gene: C16orf86 <br>log2FC: 0.075 <br> chromosome 16 open reading frame 86","Gene: SCARNA13 <br>log2FC: -0.024 <br> small Cajal body-specific RNA 13","Gene: HADHB <br>log2FC: -0.035 <br> hydroxyacyl-CoA dehydrogenase/3-ketoacyl-CoA thiolase/enoyl-CoA hydratase (trifunctional protein), beta subunit","Gene: FAM227B <br>log2FC: 0.054 <br> family with sequence similarity 227 member B","Gene: ERCC6L2 <br>log2FC: 0.008 <br> ERCC excision repair 6 like 2","Gene: SLF2 <br>log2FC: -0.054 <br> SMC5-SMC6 complex localization factor 2","Gene: CDKAL1 <br>log2FC: 0.035 <br> CDK5 regulatory subunit associated protein 1 like 1","Gene: ARHGAP27 <br>log2FC: -0.12 <br> Rho GTPase activating protein 27","Gene: ZNF512 <br>log2FC: -0.128 <br> zinc finger protein 512","Gene: LIME1 <br>log2FC: 0.091 <br> Lck interacting transmembrane adaptor 1","Gene: IGF2BP1 <br>log2FC: 0.015 <br> insulin like growth factor 2 mRNA binding protein 1","Gene: ARL5B <br>log2FC: -0.05 <br> ADP ribosylation factor like GTPase 5B","Gene: MAP2K4 <br>log2FC: -0.028 <br> mitogen-activated protein kinase kinase 4","Gene: KYAT1 <br>log2FC: -0.017 <br> kynurenine aminotransferase 1","Gene: SNURF <br>log2FC: 0.105 <br> SNRPN upstream reading frame","Gene: MCF2L <br>log2FC: -0.003 <br> MCF.2 cell line derived transforming sequence like","Gene: ZCCHC6 <br>log2FC: -0.251 <br> zinc finger CCHC-type containing 6","Gene: TBKBP1 <br>log2FC: 0.045 <br> TBK1 binding protein 1","Gene: SUMO3 <br>log2FC: 0.06 <br> small ubiquitin-like modifier 3","Gene: NFE2L3 <br>log2FC: 0.103 <br> nuclear factor, erythroid 2 like 3","Gene: NEFL <br>log2FC: 0.185 <br> neurofilament, light polypeptide","Gene: ST3GAL2 <br>log2FC: 0.066 <br> ST3 beta-galactoside alpha-2,3-sialyltransferase 2","Gene: OMD <br>log2FC: -0.379 <br> osteomodulin","Gene: SOCS1 <br>log2FC: -0.033 <br> suppressor of cytokine signaling 1","Gene: MRPL49 <br>log2FC: -0.01 <br> mitochondrial ribosomal protein L49","Gene: TMEM107 <br>log2FC: -0.056 <br> transmembrane protein 107","Gene: GABRB2 <br>log2FC: -0.023 <br> gamma-aminobutyric acid type A receptor beta2 subunit","Gene: LOC101928995 <br>log2FC: 0.045 <br> uncharacterized LOC101928995","Gene: PFKFB3 <br>log2FC: -0.166 <br> 6-phosphofructo-2-kinase/fructose-2,6-biphosphatase 3","Gene: FHAD1 <br>log2FC: -0.014 <br> forkhead associated phosphopeptide binding domain 1","Gene: STAU1 <br>log2FC: -0.015 <br> staufen double-stranded RNA binding protein 1","Gene: MYCN <br>log2FC: 0.006 <br> v-myc avian myelocytomatosis viral oncogene neuroblastoma derived homolog","Gene: OSBPL7 <br>log2FC: 0.083 <br> oxysterol binding protein like 7","Gene: ROBO4 <br>log2FC: 0.088 <br> roundabout guidance receptor 4","Gene: AHCTF1 <br>log2FC: 0.072 <br> AT-hook containing transcription factor 1","Gene: RHPN1-AS1 <br>log2FC: -0.081 <br> RHPN1 antisense RNA 1 (head to head)","Gene: ZNF557 <br>log2FC: 0.034 <br> zinc finger protein 557","Gene: CRYBB1 <br>log2FC: 0.04 <br> crystallin beta B1","Gene: RBM33 <br>log2FC: 0.048 <br> RNA binding motif protein 33","Gene: TAF12 <br>log2FC: -0.128 <br> TATA-box binding protein associated factor 12","Gene: SAMD11 <br>log2FC: -0.065 <br> sterile alpha motif domain containing 11","Gene: CLEC4E <br>log2FC: -0.144 <br> C-type lectin domain family 4 member E","Gene: GJC1 <br>log2FC: -0.131 <br> gap junction protein gamma 1","Gene: ESCO1 <br>log2FC: -0.08 <br> establishment of sister chromatid cohesion N-acetyltransferase 1","Gene: ETS1 <br>log2FC: -0.154 <br> ETS proto-oncogene 1, transcription factor","Gene: ABTB1 <br>log2FC: 0.011 <br> ankyrin repeat and BTB domain containing 1","Gene: HBB <br>log2FC: -0.775 <br> hemoglobin subunit beta","Gene: LINC01227 <br>log2FC: 0.021 <br> long intergenic non-protein coding RNA 1227","Gene: MOGAT1 <br>log2FC: 0.066 <br> monoacylglycerol O-acyltransferase 1","Gene: ZNF280B <br>log2FC: -0.095 <br> zinc finger protein 280B","Gene: VWA5B2 <br>log2FC: 0.039 <br> von Willebrand factor A domain containing 5B2","Gene: NBPF8 <br>log2FC: -0.064 <br> neuroblastoma breakpoint family member 8","Gene: LPIN3 <br>log2FC: 0.004 <br> lipin 3","Gene: SPRED2 <br>log2FC: 0.027 <br> sprouty related EVH1 domain containing 2","Gene: KLHDC10 <br>log2FC: -0.083 <br> kelch domain containing 10","Gene: TMEM14A <br>log2FC: 0.25 <br> transmembrane protein 14A","Gene: TRIM36 <br>log2FC: -0.025 <br> tripartite motif containing 36","Gene: ARFGEF1 <br>log2FC: 0.017 <br> ADP ribosylation factor guanine nucleotide exchange factor 1","Gene: CCDC136 <br>log2FC: 0.045 <br> coiled-coil domain containing 136","Gene: ATM <br>log2FC: -0.121 <br> ATM serine/threonine kinase","Gene: ATP11A <br>log2FC: 0.095 <br> ATPase phospholipid transporting 11A","Gene: EMILIN3 <br>log2FC: -0.091 <br> elastin microfibril interfacer 3","Gene: SIRT5 <br>log2FC: 0.1 <br> sirtuin 5","Gene: FITM2 <br>log2FC: 0.054 <br> fat storage inducing transmembrane protein 2","Gene: CELSR1 <br>log2FC: -0.013 <br> cadherin EGF LAG seven-pass G-type receptor 1","Gene: CNN2 <br>log2FC: 0.082 <br> calponin 2","Gene: TNKS2 <br>log2FC: -0.036 <br> tankyrase 2","Gene: TRO <br>log2FC: 0.022 <br> trophinin","Gene: ARHGAP29 <br>log2FC: 0.005 <br> Rho GTPase activating protein 29","Gene: COL6A1 <br>log2FC: -0.01 <br> collagen type VI alpha 1 chain","Gene: ENDOV <br>log2FC: 0.04 <br> endonuclease V","Gene: FAM126B <br>log2FC: -0.11 <br> family with sequence similarity 126 member B","Gene: COX18 <br>log2FC: 0.097 <br> COX18, cytochrome c oxidase assembly factor","Gene: LINC00623 <br>log2FC: -0.082 <br> long intergenic non-protein coding RNA 623","Gene: FBXO44 <br>log2FC: 0.031 <br> F-box protein 44","Gene: LOXL2 <br>log2FC: 0.04 <br> lysyl oxidase like 2","Gene: EXOSC6 <br>log2FC: -0.101 <br> exosome component 6","Gene: CHD1 <br>log2FC: 0.022 <br> chromodomain helicase DNA binding protein 1","Gene: FGD5 <br>log2FC: -0.075 <br> FYVE, RhoGEF and PH domain containing 5","Gene: FAM129A <br>log2FC: -0.037 <br> family with sequence similarity 129 member A","Gene: ZNF778 <br>log2FC: 0.074 <br> zinc finger protein 778","Gene: YTHDC1 <br>log2FC: -0.023 <br> YTH domain containing 1","Gene: GLRX3 <br>log2FC: 0.029 <br> glutaredoxin 3","Gene: LOC101929368 <br>log2FC: -0.16 <br> uncharacterized LOC101929368","Gene: TCF7 <br>log2FC: 0.057 <br> transcription factor 7 (T-cell specific, HMG-box)","Gene: ZMYND12 <br>log2FC: 0.036 <br> zinc finger MYND-type containing 12","Gene: EFTUD2 <br>log2FC: -0.01 <br> elongation factor Tu GTP binding domain containing 2","Gene: TNFRSF11B <br>log2FC: -0.114 <br> TNF receptor superfamily member 11b","Gene: TMEM53 <br>log2FC: 0.123 <br> transmembrane protein 53","Gene: IDI2 <br>log2FC: -0.018 <br> isopentenyl-diphosphate delta isomerase 2","Gene: POLR3H <br>log2FC: 0.074 <br> RNA polymerase III subunit H","Gene: CCDC115 <br>log2FC: -0.05 <br> coiled-coil domain containing 115","Gene: CADM2 <br>log2FC: -0.015 <br> cell adhesion molecule 2","Gene: CIPC <br>log2FC: -0.024 <br> CLOCK interacting pacemaker","Gene: FCMR <br>log2FC: 0.089 <br> Fc fragment of IgM receptor","Gene: PRPF19 <br>log2FC: 0.111 <br> pre-mRNA processing factor 19","Gene: TRIM71 <br>log2FC: -0.043 <br> tripartite motif containing 71","Gene: ANKRD30B <br>log2FC: 0.013 <br> ankyrin repeat domain 30B","Gene: CYP2C19 <br>log2FC: -0.028 <br> cytochrome P450 family 2 subfamily C member 19","Gene: CYP2C9 <br>log2FC: -0.158 <br> cytochrome P450 family 2 subfamily C member 9","Gene: KRT27 <br>log2FC: 0.024 <br> keratin 27","Gene: LOC101929114 <br>log2FC: 0.002 <br> uncharacterized LOC101929114","Gene: SYCE1 <br>log2FC: 0.039 <br> synaptonemal complex central element protein 1","Gene: TET1 <br>log2FC: -0.002 <br> tet methylcytosine dioxygenase 1","Gene: CFH <br>log2FC: -0.275 <br> complement factor H","Gene: TBC1D1 <br>log2FC: 0.124 <br> TBC1 domain family member 1","Gene: LOC101928551 <br>log2FC: -0.003 <br> uncharacterized LOC101928551","Gene: TMEM144 <br>log2FC: -0.053 <br> transmembrane protein 144","Gene: PCSK5 <br>log2FC: -0.356 <br> proprotein convertase subtilisin/kexin type 5","Gene: RAD1 <br>log2FC: 0.032 <br> RAD1 checkpoint DNA exonuclease","Gene: EDN1 <br>log2FC: -0.015 <br> endothelin 1","Gene: EME2 <br>log2FC: 0.059 <br> essential meiotic structure-specific endonuclease subunit 2","Gene: SH3PXD2B <br>log2FC: -0.027 <br> SH3 and PX domains 2B","Gene: CABLES1 <br>log2FC: -0.042 <br> Cdk5 and Abl enzyme substrate 1","Gene: DIAPH1 <br>log2FC: -0.139 <br> diaphanous related formin 1","Gene: EPHA5 <br>log2FC: -0.015 <br> EPH receptor A5","Gene: MAPT-AS1 <br>log2FC: -0.031 <br> MAPT antisense RNA 1","Gene: NOX1 <br>log2FC: -0.045 <br> NADPH oxidase 1","Gene: NDST4 <br>log2FC: 0.046 <br> N-deacetylase and N-sulfotransferase 4","Gene: PPP1R14C <br>log2FC: 0.279 <br> protein phosphatase 1 regulatory inhibitor subunit 14C","Gene: MCM10 <br>log2FC: -0.119 <br> minichromosome maintenance 10 replication initiation factor","Gene: CFLAR <br>log2FC: -0.102 <br> CASP8 and FADD like apoptosis regulator","Gene: HPS6 <br>log2FC: 0.048 <br> HPS6, biogenesis of lysosomal organelles complex 2 subunit 3","Gene: JUN <br>log2FC: 0.104 <br> Jun proto-oncogene, AP-1 transcription factor subunit","Gene: HNRNPUL2 <br>log2FC: -0.024 <br> heterogeneous nuclear ribonucleoprotein U like 2","Gene: GOSR1 <br>log2FC: -0.034 <br> golgi SNAP receptor complex member 1","Gene: SFT2D3 <br>log2FC: 0.013 <br> SFT2 domain containing 3","Gene: SLC8A1 <br>log2FC: 0.051 <br> solute carrier family 8 member A1","Gene: WDR82 <br>log2FC: 0.045 <br> WD repeat domain 82","Gene: UBE2Z <br>log2FC: -0.076 <br> ubiquitin conjugating enzyme E2 Z","Gene: LRRC3 <br>log2FC: 0.004 <br> leucine rich repeat containing 3","Gene: CTU2 <br>log2FC: 0.101 <br> cytosolic thiouridylase subunit 2","Gene: MVK <br>log2FC: 0.018 <br> mevalonate kinase","Gene: CBARP <br>log2FC: -0.043 <br> CACN beta subunit associated regulatory protein","Gene: ARRDC3 <br>log2FC: -0.115 <br> arrestin domain containing 3","Gene: SSX4B <br>log2FC: 0.036 <br> SSX family member 4B","Gene: ATF3 <br>log2FC: 0.084 <br> activating transcription factor 3","Gene: ROBO2 <br>log2FC: 0.049 <br> roundabout guidance receptor 2","Gene: ENOPH1 <br>log2FC: 0.07 <br> enolase-phosphatase 1","Gene: TSPYL1 <br>log2FC: -0.06 <br> TSPY like 1","Gene: NEK8 <br>log2FC: 0.048 <br> NIMA related kinase 8","Gene: CHRDL1 <br>log2FC: -0.239 <br> chordin like 1","Gene: C6orf226 <br>log2FC: 0.109 <br> chromosome 6 open reading frame 226","Gene: AP1AR <br>log2FC: -0.038 <br> adaptor related protein complex 1 associated regulatory protein","Gene: CWF19L2 <br>log2FC: -0.034 <br> CWF19-like 2, cell cycle control (S. pombe)","Gene: DPP6 <br>log2FC: 0.065 <br> dipeptidyl peptidase like 6","Gene: CYFIP2 <br>log2FC: 0.262 <br> cytoplasmic FMR1 interacting protein 2","Gene: CPNE5 <br>log2FC: -0.006 <br> copine 5","Gene: LARP4B <br>log2FC: -0.153 <br> La ribonucleoprotein domain family member 4B","Gene: HESX1 <br>log2FC: 0.013 <br> HESX homeobox 1","Gene: CRYM <br>log2FC: 0.014 <br> crystallin mu","Gene: ARFRP1 <br>log2FC: -0.027 <br> ADP ribosylation factor related protein 1","Gene: KIF11 <br>log2FC: -0.037 <br> kinesin family member 11","Gene: APIP <br>log2FC: 0.062 <br> APAF1 interacting protein","Gene: FGFBP1 <br>log2FC: -0.06 <br> fibroblast growth factor binding protein 1","Gene: NOL9 <br>log2FC: -0.066 <br> nucleolar protein 9","Gene: MESP1 <br>log2FC: 0.062 <br> mesoderm posterior bHLH transcription factor 1","Gene: LIPE <br>log2FC: 0.042 <br> lipase E, hormone sensitive type","Gene: LOC101928000 <br>log2FC: 0.071 <br> uncharacterized LOC101928000","Gene: ARMC7 <br>log2FC: 0.019 <br> armadillo repeat containing 7","Gene: MRPS10 <br>log2FC: -0.024 <br> mitochondrial ribosomal protein S10","Gene: PTGIS <br>log2FC: 0.038 <br> prostaglandin I2 (prostacyclin) synthase","Gene: ZGRF1 <br>log2FC: -0.061 <br> zinc finger GRF-type containing 1","Gene: LHX1 <br>log2FC: 0.041 <br> LIM homeobox 1","Gene: MYCNOS <br>log2FC: 0.01 <br> MYCN opposite strand","Gene: RAB30 <br>log2FC: 0.034 <br> RAB30, member RAS oncogene family","Gene: EHD4 <br>log2FC: 0.04 <br> EH domain containing 4","Gene: SPIB <br>log2FC: 0.059 <br> Spi-B transcription factor","Gene: FLCN <br>log2FC: -0.062 <br> folliculin","Gene: GRIA1 <br>log2FC: 0.018 <br> glutamate ionotropic receptor AMPA type subunit 1","Gene: CCDC144CP <br>log2FC: -0.081 <br> coiled-coil domain containing 144C, pseudogene","Gene: CD80 <br>log2FC: -0.038 <br> CD80 molecule","Gene: ERBIN <br>log2FC: 0.017 <br> erbb2 interacting protein","Gene: TCP11L2 <br>log2FC: -0.202 <br> t-complex 11 like 2","Gene: ENTPD4 <br>log2FC: -0.07 <br> ectonucleoside triphosphate diphosphohydrolase 4","Gene: FAM27E2 <br>log2FC: -0.026 <br> family with sequence similarity 27 member E2","Gene: SEC16B <br>log2FC: -0.066 <br> SEC16 homolog B, endoplasmic reticulum export factor","Gene: SNRPA1 <br>log2FC: 0.037 <br> small nuclear ribonucleoprotein polypeptide A'","Gene: KPNB1 <br>log2FC: 0.087 <br> karyopherin subunit beta 1","Gene: HGF <br>log2FC: 0.039 <br> hepatocyte growth factor","Gene: ARL17B <br>log2FC: -0.033 <br> ADP ribosylation factor like GTPase 17B","Gene: CLCN7 <br>log2FC: 0.072 <br> chloride voltage-gated channel 7","Gene: MIR133A1HG <br>log2FC: 0.078 <br> MIR133A1 host gene","Gene: PAFAH1B3 <br>log2FC: 0.074 <br> platelet activating factor acetylhydrolase 1b catalytic subunit 3","Gene: LOC101927123 <br>log2FC: 0.017 <br> uncharacterized LOC101927123","Gene: BTBD9 <br>log2FC: -0.022 <br> BTB domain containing 9","Gene: ADD3-AS1 <br>log2FC: -0.049 <br> ADD3 antisense RNA 1","Gene: MTMR1 <br>log2FC: -0.017 <br> myotubularin related protein 1","Gene: HNMT <br>log2FC: -0.081 <br> histamine N-methyltransferase","Gene: MIAT <br>log2FC: 0.001 <br> myocardial infarction associated transcript (non-protein coding)","Gene: CCDC69 <br>log2FC: -0.017 <br> coiled-coil domain containing 69","Gene: CRYZ <br>log2FC: 0.073 <br> crystallin zeta","Gene: RSU1 <br>log2FC: 0.029 <br> Ras suppressor protein 1","Gene: ZNF169 <br>log2FC: 0.006 <br> zinc finger protein 169","Gene: STX17 <br>log2FC: -0.032 <br> syntaxin 17","Gene: PRDM10 <br>log2FC: -0.002 <br> PR/SET domain 10","Gene: ZBED3-AS1 <br>log2FC: 0.011 <br> ZBED3 antisense RNA 1","Gene: ADGRE2 <br>log2FC: -0.028 <br> adhesion G protein-coupled receptor E2","Gene: SLC50A1 <br>log2FC: 0.047 <br> solute carrier family 50 member 1","Gene: LINC01140 <br>log2FC: -0.094 <br> long intergenic non-protein coding RNA 1140","Gene: ZBTB11 <br>log2FC: -0.109 <br> zinc finger and BTB domain containing 11","Gene: VTI1A <br>log2FC: -0.059 <br> vesicle transport through interaction with t-SNAREs 1A","Gene: ARHGEF37 <br>log2FC: 0.091 <br> Rho guanine nucleotide exchange factor 37","Gene: UROS <br>log2FC: 0.207 <br> uroporphyrinogen III synthase","Gene: LOC101928707 <br>log2FC: 0.001 <br> uncharacterized LOC101928707","Gene: TUBE1 <br>log2FC: -0.021 <br> tubulin epsilon 1","Gene: CCDC181 <br>log2FC: 0.012 <br> coiled-coil domain containing 181","Gene: OXR1 <br>log2FC: -0.099 <br> oxidation resistance 1","Gene: DROSHA <br>log2FC: 0.046 <br> drosha ribonuclease III","Gene: CRIPT <br>log2FC: -0.19 <br> CXXC repeat containing interactor of PDZ3 domain","Gene: ZNF668 <br>log2FC: 0.003 <br> zinc finger protein 668","Gene: MCTP1 <br>log2FC: -0.182 <br> multiple C2 and transmembrane domain containing 1","Gene: LMNA <br>log2FC: 0.063 <br> lamin A/C","Gene: MICAL2 <br>log2FC: -0.009 <br> microtubule associated monooxygenase, calponin and LIM domain containing 2","Gene: AKT3 <br>log2FC: -0.137 <br> AKT serine/threonine kinase 3","Gene: PMS1 <br>log2FC: -0.029 <br> PMS1 homolog 1, mismatch repair system component","Gene: GRHL1 <br>log2FC: -0.177 <br> grainyhead like transcription factor 1","Gene: OSBPL11 <br>log2FC: 0.058 <br> oxysterol binding protein like 11","Gene: KLHL42 <br>log2FC: 0.105 <br> kelch like family member 42","Gene: BIN3-IT1 <br>log2FC: 0.085 <br> BIN3 intronic transcript 1","Gene: NID2 <br>log2FC: -0.035 <br> nidogen 2","Gene: DNASE1L1 <br>log2FC: 0.109 <br> deoxyribonuclease 1 like 1","Gene: TFPI <br>log2FC: -0.089 <br> tissue factor pathway inhibitor","Gene: TIMELESS <br>log2FC: 0.015 <br> timeless circadian clock","Gene: ISM2 <br>log2FC: -0.007 <br> isthmin 2","Gene: SRRT <br>log2FC: 0.008 <br> serrate, RNA effector molecule","Gene: ESR1 <br>log2FC: 0.079 <br> estrogen receptor 1","Gene: SLFN5 <br>log2FC: 0.023 <br> schlafen family member 5","Gene: LOC100506016 <br>log2FC: 0.003 <br> uncharacterized LOC100506016","Gene: HNRNPH3 <br>log2FC: -0.108 <br> heterogeneous nuclear ribonucleoprotein H3","Gene: RCOR3 <br>log2FC: -0.183 <br> REST corepressor 3","Gene: MIR9-3HG <br>log2FC: 0.108 <br> MIR9-3 host gene","Gene: WWOX <br>log2FC: 0.045 <br> WW domain containing oxidoreductase","Gene: NRCAM <br>log2FC: 0.078 <br> neuronal cell adhesion molecule","Gene: C1orf127 <br>log2FC: -0.008 <br> chromosome 1 open reading frame 127","Gene: SELPLG <br>log2FC: -0.002 <br> selectin P ligand","Gene: PET117 <br>log2FC: 0.191 <br> PET117 homolog","Gene: ANGPTL3 <br>log2FC: -0.009 <br> angiopoietin like 3","Gene: CNIH3 <br>log2FC: 0.067 <br> cornichon family AMPA receptor auxiliary protein 3","Gene: ESYT1 <br>log2FC: 0.035 <br> extended synaptotagmin 1","Gene: ITGA10 <br>log2FC: 0.064 <br> integrin subunit alpha 10","Gene: SGO1 <br>log2FC: 0.03 <br> shugoshin 1","Gene: MCOLN3 <br>log2FC: -0.22 <br> mucolipin 3","Gene: TSLP <br>log2FC: 0.002 <br> thymic stromal lymphopoietin","Gene: USP46 <br>log2FC: -0.071 <br> ubiquitin specific peptidase 46","Gene: TPSAB1 <br>log2FC: 0.169 <br> tryptase alpha/beta 1","Gene: LPP <br>log2FC: -0.131 <br> LIM domain containing preferred translocation partner in lipoma","Gene: NAV2 <br>log2FC: 0.002 <br> neuron navigator 2","Gene: LHX8 <br>log2FC: -0.065 <br> LIM homeobox 8","Gene: MFSD11 <br>log2FC: 0.014 <br> major facilitator superfamily domain containing 11","Gene: PMS2P8 <br>log2FC: -0.075 <br> PMS1 homolog 2, mismatch repair system component pseudogene 8","Gene: DST <br>log2FC: 0.001 <br> dystonin","Gene: LINC00672 <br>log2FC: -0.022 <br> long intergenic non-protein coding RNA 672","Gene: VAMP4 <br>log2FC: 0.035 <br> vesicle associated membrane protein 4","Gene: PDE4A <br>log2FC: 0.174 <br> phosphodiesterase 4A","Gene: TNFRSF18 <br>log2FC: 0.139 <br> TNF receptor superfamily member 18","Gene: COL18A1 <br>log2FC: 0.198 <br> collagen type XVIII alpha 1 chain","Gene: SP140L <br>log2FC: 0.046 <br> SP140 nuclear body protein like","Gene: TAOK1 <br>log2FC: -0.073 <br> TAO kinase 1","Gene: SLAIN2 <br>log2FC: 0 <br> SLAIN motif family member 2","Gene: RIT1 <br>log2FC: 0.04 <br> Ras like without CAAX 1","Gene: SSX2IP <br>log2FC: -0.093 <br> SSX family member 2 interacting protein","Gene: MASP1 <br>log2FC: 0.075 <br> mannan binding lectin serine peptidase 1","Gene: GPALPP1 <br>log2FC: -0.054 <br> GPALPP motifs containing 1","Gene: CACNA2D1 <br>log2FC: -0.038 <br> calcium voltage-gated channel auxiliary subunit alpha2delta 1","Gene: POU2F2 <br>log2FC: 0.093 <br> POU class 2 homeobox 2","Gene: PPHLN1 <br>log2FC: 0.042 <br> periphilin 1","Gene: LOC100134368 <br>log2FC: -0.016 <br> uncharacterized LOC100134368","Gene: ATL1 <br>log2FC: -0.054 <br> atlastin GTPase 1","Gene: CHRM4 <br>log2FC: -0.03 <br> cholinergic receptor muscarinic 4","Gene: CDH11 <br>log2FC: -0.1 <br> cadherin 11","Gene: PIP5K1C <br>log2FC: 0.036 <br> phosphatidylinositol-4-phosphate 5-kinase type 1 gamma","Gene: NFX1 <br>log2FC: -0.009 <br> nuclear transcription factor, X-box binding 1","Gene: ADORA3 <br>log2FC: -0.001 <br> adenosine A3 receptor","Gene: TDRKH <br>log2FC: -0.002 <br> tudor and KH domain containing","Gene: GRM1 <br>log2FC: 0.047 <br> glutamate metabotropic receptor 1","Gene: DOCK10 <br>log2FC: -0.046 <br> dedicator of cytokinesis 10","Gene: TPCN2 <br>log2FC: 0.022 <br> two pore segment channel 2","Gene: RNF14 <br>log2FC: -0.009 <br> ring finger protein 14","Gene: CSNK1A1 <br>log2FC: -0.096 <br> casein kinase 1 alpha 1","Gene: SFI1 <br>log2FC: 0.032 <br> SFI1 centrin binding protein","Gene: CDC42EP4 <br>log2FC: 0.099 <br> CDC42 effector protein 4","Gene: SHF <br>log2FC: 0.09 <br> Src homology 2 domain containing F","Gene: PDHA1 <br>log2FC: 0.102 <br> pyruvate dehydrogenase (lipoamide) alpha 1","Gene: EZH1 <br>log2FC: -0.069 <br> enhancer of zeste 1 polycomb repressive complex 2 subunit","Gene: PNPLA8 <br>log2FC: 0.081 <br> patatin like phospholipase domain containing 8","Gene: SERF2-C15ORF63 <br>log2FC: 0.089 <br> SERF2-C15orf63 readthrough","Gene: IARS <br>log2FC: 0.123 <br> isoleucyl-tRNA synthetase","Gene: EIF2S1 <br>log2FC: 0.124 <br> eukaryotic translation initiation factor 2 subunit alpha","Gene: EPB41L3 <br>log2FC: -0.159 <br> erythrocyte membrane protein band 4.1 like 3","Gene: NOTCH4 <br>log2FC: 0.018 <br> notch 4","Gene: ALKBH2 <br>log2FC: 0.142 <br> alkB homolog 2, alpha-ketoglutarate dependent dioxygenase","Gene: PLEKHA8 <br>log2FC: -0.014 <br> pleckstrin homology domain containing A8","Gene: SEMA6B <br>log2FC: 0.056 <br> semaphorin 6B","Gene: PRSS58 <br>log2FC: -0.072 <br> protease, serine 58","Gene: RGS8 <br>log2FC: -0.051 <br> regulator of G-protein signaling 8","Gene: TENM4 <br>log2FC: 0.178 <br> teneurin transmembrane protein 4","Gene: LRRC59 <br>log2FC: 0.03 <br> leucine rich repeat containing 59","Gene: MEOX2 <br>log2FC: -0.021 <br> mesenchyme homeobox 2","Gene: SNAP23 <br>log2FC: -0.266 <br> synaptosome associated protein 23","Gene: VTI1A <br>log2FC: 0.071 <br> vesicle transport through interaction with t-SNAREs 1A","Gene: AMIGO3 <br>log2FC: -0.078 <br> adhesion molecule with Ig like domain 3","Gene: MED1 <br>log2FC: -0.019 <br> mediator complex subunit 1","Gene: UGT3A1 <br>log2FC: -0.005 <br> UDP glycosyltransferase family 3 member A1","Gene: SH3BP2 <br>log2FC: -0.121 <br> SH3 domain binding protein 2","Gene: NLRP5 <br>log2FC: 0.038 <br> NLR family pyrin domain containing 5","Gene: CNR1 <br>log2FC: -0.006 <br> cannabinoid receptor 1","Gene: LOC101928460 <br>log2FC: 0.041 <br> uncharacterized LOC101928460","Gene: TAOK1 <br>log2FC: -0.366 <br> TAO kinase 1","Gene: LOC389906 <br>log2FC: 0.1 <br> zinc finger protein 839 pseudogene","Gene: HIGD2A <br>log2FC: 0.019 <br> HIG1 hypoxia inducible domain family member 2A","Gene: TTYH2 <br>log2FC: -0.056 <br> tweety family member 2","Gene: LINC01420 <br>log2FC: 0.085 <br> long intergenic non-protein coding RNA 1420","Gene: ORC5 <br>log2FC: -0.03 <br> origin recognition complex subunit 5","Gene: PLN <br>log2FC: -0.06 <br> phospholamban","Gene: ZNRF3 <br>log2FC: 0.17 <br> zinc and ring finger 3","Gene: ALB <br>log2FC: -0.001 <br> albumin","Gene: HDHD3 <br>log2FC: 0.15 <br> haloacid dehalogenase like hydrolase domain containing 3","Gene: TMEM138 <br>log2FC: 0.077 <br> transmembrane protein 138","Gene: RMND5A <br>log2FC: -0.31 <br> required for meiotic nuclear division 5 homolog A","Gene: RCCD1 <br>log2FC: 0.015 <br> RCC1 domain containing 1","Gene: IQGAP1 <br>log2FC: -0.144 <br> IQ motif containing GTPase activating protein 1","Gene: FBF1 <br>log2FC: 0.117 <br> Fas binding factor 1","Gene: FAM26F <br>log2FC: -0.044 <br> family with sequence similarity 26 member F","Gene: CKS1B <br>log2FC: -0.021 <br> CDC28 protein kinase regulatory subunit 1B","Gene: DCAF8 <br>log2FC: 0.111 <br> DDB1 and CUL4 associated factor 8","Gene: WTH3DI <br>log2FC: -0.009 <br> RAB6C-like","Gene: Ndufaf4 <br>log2FC: -0.001 <br> NADH:ubiquinone oxidoreductase complex assembly factor 4","Gene: ABCB1 <br>log2FC: -0.077 <br> ATP binding cassette subfamily B member 1","Gene: EME2 <br>log2FC: -0.009 <br> essential meiotic structure-specific endonuclease subunit 2","Gene: TXN <br>log2FC: 0.077 <br> thioredoxin","Gene: SPATA41 <br>log2FC: -0.036 <br> spermatogenesis associated 41 (non-protein coding)","Gene: ZNF281 <br>log2FC: -0.156 <br> zinc finger protein 281","Gene: ZDHHC2 <br>log2FC: 0.067 <br> zinc finger DHHC-type containing 2","Gene: VWA3A <br>log2FC: -0.025 <br> von Willebrand factor A domain containing 3A","Gene: TMCO3 <br>log2FC: -0.249 <br> transmembrane and coiled-coil domains 3","Gene: JAM3 <br>log2FC: 0.017 <br> junctional adhesion molecule 3","Gene: ZNF92 <br>log2FC: -0.12 <br> zinc finger protein 92","Gene: ATRAID <br>log2FC: -0.017 <br> all-trans retinoic acid induced differentiation factor","Gene: MRPS11 <br>log2FC: -0.073 <br> mitochondrial ribosomal protein S11","Gene: CHIC1 <br>log2FC: 0.066 <br> cysteine rich hydrophobic domain 1","Gene: SLC11A1 <br>log2FC: 0.085 <br> solute carrier family 11 member 1","Gene: CRLF1 <br>log2FC: 0.351 <br> cytokine receptor like factor 1","Gene: BCAM <br>log2FC: 0.021 <br> basal cell adhesion molecule (Lutheran blood group)","Gene: SERBP1 <br>log2FC: -0.082 <br> SERPINE1 mRNA binding protein 1","Gene: FGF12 <br>log2FC: -0.023 <br> fibroblast growth factor 12","Gene: MPST <br>log2FC: 0.028 <br> mercaptopyruvate sulfurtransferase","Gene: TFAM <br>log2FC: 0.08 <br> transcription factor A, mitochondrial","Gene: LOC101928830 <br>log2FC: -0.041 <br> uncharacterized LOC101928830","Gene: PICALM <br>log2FC: -0.03 <br> phosphatidylinositol binding clathrin assembly protein","Gene: RB1CC1 <br>log2FC: -0.148 <br> RB1 inducible coiled-coil 1","Gene: MIF4GD <br>log2FC: 0.081 <br> MIF4G domain containing","Gene: NCOA3 <br>log2FC: -0.067 <br> nuclear receptor coactivator 3","Gene: MAPKBP1 <br>log2FC: -0.02 <br> mitogen-activated protein kinase binding protein 1","Gene: UBR5 <br>log2FC: 0.092 <br> ubiquitin protein ligase E3 component n-recognin 5","Gene: JARID2 <br>log2FC: -0.002 <br> jumonji and AT-rich interaction domain containing 2","Gene: NPR1 <br>log2FC: 0.089 <br> natriuretic peptide receptor 1","Gene: OR5J2 <br>log2FC: 0.017 <br> olfactory receptor family 5 subfamily J member 2","Gene: NDUFV1 <br>log2FC: 0.032 <br> NADH:ubiquinone oxidoreductase core subunit V1","Gene: VMA21 <br>log2FC: 0.048 <br> VMA21 vacuolar H+-ATPase homolog (S. cerevisiae)","Gene: LINC00208 <br>log2FC: -0.018 <br> long intergenic non-protein coding RNA 208","Gene: LOC90768 <br>log2FC: 0.002 <br> uncharacterized LOC90768","Gene: UBE2J1 <br>log2FC: 0.039 <br> ubiquitin conjugating enzyme E2 J1","Gene: TICRR <br>log2FC: -0.013 <br> TOPBP1 interacting checkpoint and replication regulator","Gene: ETV4 <br>log2FC: 0.035 <br> ETS variant 4","Gene: APOL6 <br>log2FC: -0.006 <br> apolipoprotein L6","Gene: VEGFB <br>log2FC: 0.06 <br> vascular endothelial growth factor B","Gene: ITLN1 <br>log2FC: -0.078 <br> intelectin 1","Gene: RAPGEF5 <br>log2FC: 0.011 <br> Rap guanine nucleotide exchange factor 5","Gene: FNTB <br>log2FC: -0.23 <br> farnesyltransferase, CAAX box, beta","Gene: KLK2 <br>log2FC: -0.013 <br> kallikrein related peptidase 2","Gene: GATAD2A <br>log2FC: 0.018 <br> GATA zinc finger domain containing 2A","Gene: VSTM4 <br>log2FC: 0.118 <br> V-set and transmembrane domain containing 4","Gene: TM2D3 <br>log2FC: 0.033 <br> TM2 domain containing 3","Gene: APOA1 <br>log2FC: 0.109 <br> apolipoprotein A1","Gene: CBS <br>log2FC: 0.149 <br> cystathionine-beta-synthase","Gene: INAFM2 <br>log2FC: 0.045 <br> InaF motif containing 2","Gene: CYP2S1 <br>log2FC: 0.155 <br> cytochrome P450 family 2 subfamily S member 1","Gene: MAPRE3 <br>log2FC: -0.022 <br> microtubule associated protein RP/EB family member 3","Gene: SMARCA1 <br>log2FC: -0.015 <br> SWI/SNF related, matrix associated, actin dependent regulator of chromatin, subfamily a, member 1","Gene: DGCR2 <br>log2FC: 0.033 <br> DiGeorge syndrome critical region gene 2","Gene: ULK4 <br>log2FC: 0.035 <br> unc-51 like kinase 4","Gene: LOC101929368 <br>log2FC: -0.004 <br> uncharacterized LOC101929368","Gene: LINC00643 <br>log2FC: 0.024 <br> long intergenic non-protein coding RNA 643","Gene: ATP10A <br>log2FC: 0.04 <br> ATPase phospholipid transporting 10A (putative)","Gene: FMNL3 <br>log2FC: -0.053 <br> formin like 3","Gene: ZAN <br>log2FC: 0.003 <br> zonadhesin (gene/pseudogene)","Gene: ADAMTS7 <br>log2FC: 0.005 <br> ADAM metallopeptidase with thrombospondin type 1 motif 7","Gene: KRT7 <br>log2FC: -0.012 <br> keratin 7","Gene: GRHL3 <br>log2FC: 0.051 <br> grainyhead like transcription factor 3","Gene: NUTF2P4 <br>log2FC: -0.191 <br> nuclear transport factor 2 pseudogene 4","Gene: PRICKLE1 <br>log2FC: -0.06 <br> prickle planar cell polarity protein 1","Gene: SERPINB13 <br>log2FC: 0.034 <br> serpin family B member 13","Gene: UBA1 <br>log2FC: -0.082 <br> ubiquitin like modifier activating enzyme 1","Gene: DDX53 <br>log2FC: -0.015 <br> DEAD-box helicase 53","Gene: HECTD1 <br>log2FC: -0.095 <br> HECT domain E3 ubiquitin protein ligase 1"],"hoverinfo":["text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text"],"marker":{"color":"rgba(190,190,190,1)","size":6,"opacity":0.69999999999999996,"line":{"color":"white","width":0.5}},"type":"scatter","name":"Non significativo","textfont":{"color":"rgba(190,190,190,1)"},"error_y":{"color":"rgba(190,190,190,1)"},"error_x":{"color":"rgba(190,190,190,1)"},"line":{"color":"rgba(190,190,190,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[2.185980208671694,1.7865749252880523,0.97755229402912036,1.1568146092622751,1.3339910636142722,0.61126343819521889,0.71794076616780433,0.52236034455433789,0.89956637504742076,0.89921193253978959,0.52324572444638573,0.66105921091867614,0.69359014989293488,0.98618819343173669,0.601071672627711,0.5539471597946477,0.75687907559004053,0.59246510301154487,0.69265105951276418,0.6974184918882429,0.61359412151763948,0.55348392771162747,0.64427409475575992,0.61652011180527211,0.56219031363290028,1.060343656728886,0.83293529024974067],"y":[16.04382480273987,13.81237214252759,13.650161118679495,12.260229487055526,11.898594083574608,11.422026898952435,10.973838960111356,10.287647570189902,8.6660876061987651,8.4801044750988481,8.3075949463594672,8.1394203420585889,7.2258647969149958,6.8456779646079244,6.7791827688126416,6.4397102661426402,6.3510795146402064,6.2894075995969168,6.1425625486294377,5.6319828126832761,5.5767929294305656,5.4246596804409712,5.0307689259855755,4.9241396844318466,4.8737100078933526,4.8695420862532055,4.8565654162030523],"mode":"markers","text":["Gene: CYP1B1 <br>log2FC: 2.186 <br> cytochrome P450 family 1 subfamily B member 1","Gene: CYP1B1 <br>log2FC: 1.787 <br> cytochrome P450 family 1 subfamily B member 1","Gene: LINC00673 <br>log2FC: 0.978 <br> long intergenic non-protein coding RNA 673","Gene: CYP1A1 <br>log2FC: 1.157 <br> cytochrome P450 family 1 subfamily A member 1","Gene: CYP1B1 <br>log2FC: 1.334 <br> cytochrome P450 family 1 subfamily B member 1","Gene: AHRR <br>log2FC: 0.611 <br> aryl-hydrocarbon receptor repressor","Gene: CYTL1 <br>log2FC: 0.718 <br> cytokine like 1","Gene: JAML <br>log2FC: 0.522 <br> junction adhesion molecule like","Gene: CD207 <br>log2FC: 0.9 <br> CD207 molecule","Gene: FCGBP <br>log2FC: 0.899 <br> Fc fragment of IgG binding protein","Gene: LGR6 <br>log2FC: 0.523 <br> leucine rich repeat containing G protein-coupled receptor 6","Gene: ALDH3A1 <br>log2FC: 0.661 <br> aldehyde dehydrogenase 3 family member A1","Gene: CHRNA3 <br>log2FC: 0.694 <br> cholinergic receptor nicotinic alpha 3 subunit","Gene: GPX2 <br>log2FC: 0.986 <br> glutathione peroxidase 2","Gene: UGT1A1 <br>log2FC: 0.601 <br> UDP glucuronosyltransferase family 1 member A1","Gene: UGT1A3 <br>log2FC: 0.554 <br> UDP glucuronosyltransferase family 1 member A3","Gene: NQO1 <br>log2FC: 0.757 <br> NAD(P)H quinone dehydrogenase 1","Gene: UGT1A1 <br>log2FC: 0.592 <br> UDP glucuronosyltransferase family 1 member A1","Gene: CLEC7A <br>log2FC: 0.693 <br> C-type lectin domain family 7 member A","Gene: NQO1 <br>log2FC: 0.697 <br> NAD(P)H quinone dehydrogenase 1","Gene: UGT1A3 <br>log2FC: 0.614 <br> UDP glucuronosyltransferase family 1 member A3","Gene: NEFM <br>log2FC: 0.553 <br> neurofilament, medium polypeptide","Gene: NQO1 <br>log2FC: 0.644 <br> NAD(P)H quinone dehydrogenase 1","Gene: NMRAL1P1 <br>log2FC: 0.617 <br> NmrA like redox sensor 1 pseudogene 1","Gene: CCL5 <br>log2FC: 0.562 <br> C-C motif chemokine ligand 5","Gene: PNLIPRP3 <br>log2FC: 1.06 <br> pancreatic lipase related protein 3","Gene: HTR3A <br>log2FC: 0.833 <br> 5-hydroxytryptamine receptor 3A"],"hoverinfo":["text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text"],"marker":{"color":"rgba(230,75,53,1)","size":6,"opacity":0.69999999999999996,"line":{"color":"white","width":0.5}},"type":"scatter","name":"Up-regulated","textfont":{"color":"rgba(230,75,53,1)"},"error_y":{"color":"rgba(230,75,53,1)"},"error_x":{"color":"rgba(230,75,53,1)"},"line":{"color":"rgba(230,75,53,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<section id="spiegazione-della-b-statistics" class="level2">
+<h2 class="anchored" data-anchor-id="spiegazione-della-b-statistics">Spiegazione della B-statistics</h2>
+<p>La B-statistics in sostanza è un parametro che combina LogFC e P value.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>fit2 <span class="ot">&lt;-</span> <span class="fu">eBayes</span>(fit2, <span class="fl">0.01</span>)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<p>eBayes è una funzione del pacchetto limma che applica un approccio bayesiano empirico per stabilizzare le stime della varianza tra geni e migliorare l’affidabilità statistica quando il numero di campioni è piccolo (n&lt;100 in genere).</p>
+<p>Con 0.01 sto dicendo che mi aspetto che l’1% dei geni siano differenzialmente espressi; la funzione usa questa mia aspettativa a priori per capire se un punto è rilevante o meno rispetto al rumore di fondo e in questo modo calcola il valore B.</p>
+<p>Questi sono i 10 geni più differenzialmente espressi, quindi con B-statistics maggiore.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Codice</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>tT_unique <span class="ot">&lt;-</span> tT[<span class="sc">!</span><span class="fu">duplicated</span>(tT<span class="sc">$</span>Gene.symbol), ]</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>tT_display <span class="ot">&lt;-</span> <span class="fu">head</span>(tT_unique, <span class="dv">10</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>tT_display<span class="sc">$</span>negLogP <span class="ot">&lt;-</span> <span class="sc">-</span><span class="fu">log10</span>(tT_display<span class="sc">$</span>P.Value)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>tT_display <span class="ot">&lt;-</span> tT_display[, <span class="fu">c</span>(<span class="st">"Gene.symbol"</span>, <span class="st">"Gene.title"</span>, <span class="st">"negLogP"</span>, <span class="st">"logFC"</span>, <span class="st">"B"</span>)]</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(tT_display, </span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>             <span class="at">caption =</span> <span class="st">"Top 10 geni unici differenzialmente espressi (ordinati per B-statistic)"</span>,</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>             <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"Gene"</span>, <span class="st">"Titolo"</span>, <span class="st">"-log10(P)"</span>, <span class="st">"log2FC"</span>, <span class="st">"B"</span>),</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>             <span class="at">digits =</span> <span class="dv">3</span>)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Top 10 geni unici differenzialmente espressi (ordinati per B-statistic)</caption>
+<colgroup>
+<col style="width: 8%">
+<col style="width: 15%">
+<col style="width: 60%">
+<col style="width: 6%">
+<col style="width: 4%">
+<col style="width: 4%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: left;">Gene</th>
+<th style="text-align: left;">Titolo</th>
+<th style="text-align: right;">-log10(P)</th>
+<th style="text-align: right;">log2FC</th>
+<th style="text-align: right;">B</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">202437_s_at</td>
+<td style="text-align: left;">CYP1B1</td>
+<td style="text-align: left;">cytochrome P450 family 1 subfamily B member 1</td>
+<td style="text-align: right;">16.044</td>
+<td style="text-align: right;">2.186</td>
+<td style="text-align: right;">25.903</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">227452_at</td>
+<td style="text-align: left;">LINC00673///LINC00511</td>
+<td style="text-align: left;">long intergenic non-protein coding RNA 673///long intergenic non-protein coding RNA 511</td>
+<td style="text-align: right;">13.650</td>
+<td style="text-align: right;">0.978</td>
+<td style="text-align: right;">21.084</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">205749_at</td>
+<td style="text-align: left;">CYP1A1</td>
+<td style="text-align: left;">cytochrome P450 family 1 subfamily A member 1</td>
+<td style="text-align: right;">12.260</td>
+<td style="text-align: right;">1.157</td>
+<td style="text-align: right;">18.254</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">229354_at</td>
+<td style="text-align: left;">AHRR</td>
+<td style="text-align: left;">aryl-hydrocarbon receptor repressor</td>
+<td style="text-align: right;">11.422</td>
+<td style="text-align: right;">0.611</td>
+<td style="text-align: right;">16.539</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">219837_s_at</td>
+<td style="text-align: left;">CYTL1</td>
+<td style="text-align: left;">cytokine like 1</td>
+<td style="text-align: right;">10.974</td>
+<td style="text-align: right;">0.718</td>
+<td style="text-align: right;">15.619</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">228094_at</td>
+<td style="text-align: left;">JAML</td>
+<td style="text-align: left;">junction adhesion molecule like</td>
+<td style="text-align: right;">10.288</td>
+<td style="text-align: right;">0.522</td>
+<td style="text-align: right;">14.207</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">220428_at</td>
+<td style="text-align: left;">CD207</td>
+<td style="text-align: left;">CD207 molecule</td>
+<td style="text-align: right;">8.666</td>
+<td style="text-align: right;">0.900</td>
+<td style="text-align: right;">10.857</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">203240_at</td>
+<td style="text-align: left;">FCGBP</td>
+<td style="text-align: left;">Fc fragment of IgG binding protein</td>
+<td style="text-align: right;">8.480</td>
+<td style="text-align: right;">0.899</td>
+<td style="text-align: right;">10.472</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">227819_at</td>
+<td style="text-align: left;">LGR6</td>
+<td style="text-align: left;">leucine rich repeat containing G protein-coupled receptor 6</td>
+<td style="text-align: right;">8.308</td>
+<td style="text-align: right;">0.523</td>
+<td style="text-align: right;">10.115</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">205623_at</td>
+<td style="text-align: left;">ALDH3A1</td>
+<td style="text-align: left;">aldehyde dehydrogenase 3 family member A1</td>
+<td style="text-align: right;">8.139</td>
+<td style="text-align: right;">0.661</td>
+<td style="text-align: right;">9.766</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Guardando la colonna log2FC notiamo subito che i valori sono tutti positivi. Questo vuol dire che si tratta di geni sovra-espressi nei fumatori. Per la parte di validazione dei singoli geni inizio con questi.</p>
+</section>
+</section>
+<section id="validazione-genetica" class="level1">
+<h1>Validazione genetica</h1>
+<section id="cyp1b1" class="level2">
+<h2 class="anchored" data-anchor-id="cyp1b1">CYP1B1</h2>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copiato!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copiato!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
